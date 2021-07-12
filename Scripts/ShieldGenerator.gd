@@ -28,7 +28,7 @@ func Recharge():
 		var delta = get_process_delta_time()
 		self.energy += chargeSpeed * delta
 		ship.SpendFuel(chargeSpeed, 1, delta)
-		ship.UpdateUIBars(Ship.UPDATE_BARS.SHIELD)
+		ship.UpdateUIBars(GameController.SHIPMODE_SHIELD)
 		yield(Tools.CreateTimer(delta), "timeout")
 
 # returns unblocked damage
@@ -36,7 +36,7 @@ func TakeDamage(dmg: float) -> float:
 	blocked = true
 	self.energy -= dmg
 	blockTimer.start(timeBeforeRecharge)
-	var unblocked = 0.0
+	var unblocked = 0.0 
 	if(energy < 0.0):
 		unblocked = abs(energy)
 		energy = 0.0

@@ -1,8 +1,9 @@
 extends Area2D
 
-export(float) var maxDistance = 5000.0
+
 
 onready var particlesPrefab = preload("res://Scenes/Effects/BulletParticles.tscn")
+onready var maxDistance = GameController.screenSize.x
 
 var target
 var point   #Vector2
@@ -23,6 +24,8 @@ func Fire(speed: float, dmg, newOwner, _target, _point = null):
 		damage = dmg
 		bulletOwner = newOwner
 		point = _point
+		var visibilityNotifier = VisibilityNotifier2D.new()
+		add_child(visibilityNotifier)
 		show()
 		if(point):
 			var dir = (point - global_position).normalized()
@@ -45,10 +48,11 @@ func _OnOwnerDeath():
 	bulletOwner = null
 
 func _on_Bullet_body_entered(body):
-	# bullet can hit only it's target
-	if(target && body == target):
+	if(body is Ship && bulletOwner && bulletOwner != body):
 		var newParticles = particlesPrefab.instance()
 		GameController.world.add_child(newParticles)
 		newParticles.global_position = global_position
 		body.TakeDamage(damage, bulletOwner)
+		if(bulletOwner.pilot is Player):
+			bulletOwner.pilot.AddAttackTarget(body)
 		queue_free()

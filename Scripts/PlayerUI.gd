@@ -49,24 +49,24 @@ func _OnFuelUpdate():
 
 func _Initialize(value):
 	player = value
-	SetBarMaxValue(Ship.UPDATE_BARS.HULL, player.ship.maxHullIntegrity)
-	SetBarMaxValue(Ship.UPDATE_BARS.FUEL, player.ship.fuelCapacity)
+	SetBarMaxValue(GameController.UPDATE_HULL, player.ship.maxHullIntegrity)
+	SetBarMaxValue(GameController.UPDATE_FUEL, player.ship.fuelCapacity)
 	if(player.ship.shieldGenerator):
-		SetBarMaxValue(Ship.UPDATE_BARS.SHIELD, player.ship.shieldGenerator.maxEnergy)
+		SetBarMaxValue(GameController.UPDATE_SHIELD, player.ship.shieldGenerator.maxEnergy)
 	else:
 		shieldBar.value = 0.0
 	player.ship.connect("hull_update", self, "_OnHullUpdate")
 	player.ship.connect("shield_update", self, "_OnShieldUpdate")
 	player.ship.connect("fuel_update", self, "_OnFuelUpdate")
-	player.ship.UpdateUIBars(Ship.UPDATE_BARS.HULL | Ship.UPDATE_BARS.SHIELD | Ship.UPDATE_BARS.FUEL)
+	player.ship.UpdateUIBars(GameController.UPDATE_HULL | GameController.UPDATE_SHIELD | GameController.UPDATE_FUEL)
 	Activate()
 
 func SetBarMaxValue(mask: int, value: float):
-	if(mask & Ship.UPDATE_BARS.HULL):
+	if(mask & GameController.UPDATE_HULL):
 		hullBar.max_value = value
-	if(mask & Ship.UPDATE_BARS.SHIELD):
+	if(mask & GameController.UPDATE_SHIELD):
 		shieldBar.max_value = value
-	if(mask & Ship.UPDATE_BARS.FUEL):
+	if(mask & GameController.UPDATE_FUEL):
 		fuelBar.max_value = value
 
 func _on_Panel_gui_input(event):
@@ -78,3 +78,10 @@ func _on_InventoryButton_button_up():
 
 func _on_InteractButton_button_up():
 	player.InteractWith(interactionTarget)
+
+
+func _on_AttackModeButton_toggled(button_pressed):
+	if(button_pressed):
+		player.ship.mode = GameController.SHIPMODE_ATTACK
+	elif(player.ship.mode != GameController.SHIPMODE_DEAD):
+		player.ship.mode = GameController.SHIPMODE_IDLE

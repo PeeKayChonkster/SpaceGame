@@ -1,8 +1,6 @@
 extends Node2D
 class_name Ship
 
-enum UPDATE_BARS { HULL = 1, SHIELD = 2, FUEL = 4 }
-
 const fuelToThrustRatio = 0.0003
 const fuelToEnergyRatio = 0.1
 
@@ -35,6 +33,7 @@ var targetSystem = null
 var engine = null
 var shieldGenerator = null
 var fuelTank = null
+var mode = GameController.SHIPMODE_IDLE
 var weapons = []
 
 signal hull_update
@@ -46,7 +45,7 @@ func _ready():
 	if (createPilotOnStart): CreatePilot()
 	hullIntegrity = maxHullIntegrity
 	fuel = fuelCapacity
-	UpdateUIBars(UPDATE_BARS.HULL | UPDATE_BARS.FUEL | UPDATE_BARS.SHIELD)
+	UpdateUIBars(GameController.UPDATE_HULL | GameController.UPDATE_FUEL | GameController.UPDATE_SHIELD)
 	InitializeSlots()
 
 func _physics_process(_delta):
@@ -93,20 +92,20 @@ func TakeDamage(dmg, fromWho = null):
 	if(hullIntegrity < 0.0): return
 	if(shieldGenerator):
 		dmg = shieldGenerator.TakeDamage(dmg)
-		UpdateUIBars(UPDATE_BARS.SHIELD)
+		UpdateUIBars(GameController.UPDATE_SHIELD)
 	hullIntegrity -= dmg
-	UpdateUIBars(UPDATE_BARS.HULL)
+	UpdateUIBars(GameController.UPDATE_HULL)
 	if(fromWho && !pilot.attackTarget):
 		pilot.AddAttackTarget(fromWho)
 	if(hullIntegrity < 0.0):
 		Explode()
 
 func UpdateUIBars(mask: int):
-	if(mask & UPDATE_BARS.HULL):
+	if(mask & GameController.UPDATE_HULL):
 		emit_signal("hull_update")
-	if(mask & UPDATE_BARS.SHIELD):
+	if(mask & GameController.UPDATE_SHIELD):
 		emit_signal("shield_update")
-	if(mask & UPDATE_BARS.FUEL):
+	if(mask & GameController.UPDATE_FUEL):
 		emit_signal("fuel_update")
 
 func TurnOffWeapons():
@@ -134,11 +133,12 @@ func InitializeSlots():
 		slot.ship = self
 		if(GameController.initialized): GameController.ui.inventoryUI.UpdateBars(self)
 	if (pilot.attackTarget): pilot.AddAttackTarget(pilot.attackTarget)
-	UpdateUIBars(UPDATE_BARS.HULL | UPDATE_BARS.SHIELD | UPDATE_BARS.FUEL)
+	UpdateUIBars(GameController.UPDATE_HULL | GameController.UPDATE_SHIELD | GameController.UPDATE_FUEL)
 
 func Explode():
+	mode = GameController.SHIPMODE_DEAD
 	emit_signal("death")
-	#collisionPolygon.set_deferred("disabled", true)
+	collisionPolygon.set_deferred("disabled", true)
 	yield(Tools.CreateTimer(1.0, self), "timeout")
 	var newExplosion = shipExplosionPefab.instance()
 	GameController.world.add_child(newExplosion)
@@ -152,9 +152,11 @@ func Explode():
 	queue_free()
 
 ### test
+### enable fire if in attack mode, or disable fire
 func Fire(value):
-	for weapon in weapons:
-		weapon.firing = value
+	if(mode == GameController.SHIPMODE_ATTACK || value == false):
+		for weapon in weapons:
+			weapon.firing = value
 
 func SpendFuel(magnitude, whichRatio, delta):
 	var coef
@@ -163,7 +165,7 @@ func SpendFuel(magnitude, whichRatio, delta):
 		1: coef = fuelToEnergyRatio
 	fuel -= magnitude * coef * delta
 	fuel = max(0.0, fuel)
-	UpdateUIBars(UPDATE_BARS.FUEL)
+	UpdateUIBars(GameController.UPDATE_FUEL)
 
 func CreatePilot():
 	if (!pilot):

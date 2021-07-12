@@ -41,11 +41,12 @@ func _process(_delta):
 
 func Scan():
 	if(target && working):
-		if(ship.targetSystem):
-			if (ship.targetSystem.fireAllowed):
-				Fire(true)
-		else:
-			Fire(false)
+		if(fireCone.overlaps_body(target)):
+			if(ship.targetSystem):
+				if (ship.targetSystem.fireAllowed):
+					Fire(true)
+			else:
+				Fire(false)
 
 func WaitForFire():
 	if(firing):
@@ -149,17 +150,20 @@ func SetFireConeShape(radius: float, degrees: int, color: Color):
 
 func AddTarget(newTarget):
 	#DebugWindow.OutputString("Adding target: " + newTarget.name)
+	if(target == newTarget): return
 	target = newTarget
 	target.connect("death", self, "_OnTargetDeath")
 	working = true
-	AnimateCone()
+	if(ship.pilot is NPC):
+		AnimateCone()
 
 func RemoveTarget():
 	if(target):
 		target.disconnect("death", self, "_OnTargetDeath")
 		target = null
 		working = false
-		AnimateCone(true)
+		if(ship.pilot is NPC):
+			AnimateCone(true)
 
 func GetInformation():
 	var info = .GetInformation()

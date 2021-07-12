@@ -1,5 +1,9 @@
 extends Node
 
+### All enums
+enum { UPDATE_HULL = 1, UPDATE_SHIELD = 2, UPDATE_FUEL = 4 }
+enum { SHIPMODE_IDLE, SHIPMODE_ATTACK, SHIPMODE_DEAD }
+###
 
 var player
 var ui
@@ -10,6 +14,7 @@ var doubleclickTime = 0.25
 var clickTime = 0.0
 var doubleclick = false
 var initialized = false
+var screenSize
 
 var maxMoveTargetDist = 600.0    # responsible for (speed / targetDistance) ratio
 var maxMoveCursorDist = 100.0    # responsible for (speed / CursorDistance) ratio
@@ -120,6 +125,8 @@ func Initialize():
 	player = null
 	world = null
 	ui = null
+	
+	screenSize = OS.get_screen_size()
 	
 	while(!player):
 		player = FindNodeOrNull("Player", true)

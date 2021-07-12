@@ -93,6 +93,7 @@ func TakeOff(planet: Planet):
 	ship.TakeOff()
 
 func AddAttackTarget(target):
+	if(attackTarget == target || attackTarget.mode == GameController.SHIPMODE_DEAD): return
 	if(attackTarget): RemoveAttackTarget()
 	attackTarget = target
 	attackTarget.connect("death", self, "_OnTargetDeath")
@@ -173,7 +174,7 @@ func DenyInteraction():
 func ResetTargets(resetMoveTarget = false):
 	if(resetMoveTarget):
 		moveTarget = null
-	screenTouch = false
+	#screenTouch = false
 	followTarget = null
 	if(destReticle):
 		destReticle.queue_free()
