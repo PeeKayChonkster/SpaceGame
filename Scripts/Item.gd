@@ -20,7 +20,7 @@ func GetInventoryItem() -> InventoryItem:
 #func UpdateInventoryItemValue(key: String, value):
 #	inventoryItem.values[key] = value
 
-func GetValuesFromInventoryItem(item : InventoryItem):
+func GetValuesFromInventoryItem(_item : InventoryItem):
 	# abstract #
 	### get required info from inventoryItem values dictionary
 	pass

@@ -21,8 +21,9 @@ func Parallax():
 	while(parallax):
 		var cameraPos = camera.global_position
 		cameraPos.y *= -1.0
-		fogShader2.set_shader_param("shift", cameraPos * 0.00001)
-		fogShader3.set_shader_param("shift", cameraPos * 0.00002)
+		fogShader3.set_shader_param("shift", cameraPos * 0.00005)
+		fogShader2.set_shader_param("shift", cameraPos * 0.0001)
+		fogShader1.set_shader_param("shift", cameraPos * 0.0002)
 		yield(get_tree(), "idle_frame")
 
 func Randomize():

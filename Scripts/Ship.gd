@@ -151,8 +151,10 @@ func Explode():
 		pilotSeat.global_position = global_position
 	queue_free()
 
-func Fire():
-	
+### test
+func Fire(value):
+	for weapon in weapons:
+		weapon.firing = value
 
 func SpendFuel(magnitude, whichRatio, delta):
 	var coef

@@ -21,6 +21,10 @@ var fireConeAlpha = 0.1
 var animatingCone = false
 var timer
 
+### test
+var firing = false
+###
+
 func _ready():
 	fireConeColor.a = fireConeAlpha
 	
@@ -30,16 +34,26 @@ func _ready():
 	ship.connect("death", self, "_OnShipDeath", [], CONNECT_ONESHOT)
 
 func _process(_delta):
-	Scan()
+	if (ship.pilot is NPC):
+		Scan()
+	else:
+		WaitForFire()
 
 func Scan():
-	if(working && target != null):
-		if(fireCone.overlaps_body(target)):
-			if(ship.targetSystem):
-				if (ship.targetSystem.fireAllowed):
-					Fire(true)
-			else:
-				Fire(false)
+	if(target && working):
+		if(ship.targetSystem):
+			if (ship.targetSystem.fireAllowed):
+				Fire(true)
+		else:
+			Fire(false)
+
+func WaitForFire():
+	if(firing):
+		if(ship.targetSystem):
+			if (ship.targetSystem.fireAllowed):
+				Fire(true)
+		else:
+			Fire(false)
 
 func drawFireCone():
 	var nb_points = 5

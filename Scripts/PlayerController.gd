@@ -27,7 +27,9 @@ func _unhandled_input(event):
 					player.screenTouch = false
 			else:   ### multiple touches
 				if(event.is_pressed()):
-					
+					player.ship.Fire(true)
+				else:
+					player.ship.Fire(false)
 	else:
 		if (event is InputEventMouseButton):
 			if(event.button_index == 1):
@@ -50,6 +52,10 @@ func _unhandled_input(event):
 	#####################
 	
 	##### ACTIONS ######
+	if(event.is_action_pressed("F")):
+		GameController.Pause()
+	if(event.is_action_released("F")):
+		pass
 	if(event.is_action_pressed("P")):
 		var _x = MapManager.SpawnRandomPlanet(player.global_position)
 	if(event.is_action_pressed("O")):
@@ -61,7 +67,9 @@ func _unhandled_input(event):
 	if(event.is_action_pressed("ShowDebugUI")):
 		GameController.ui.ToggleDebugUI()
 	if(event.is_action_pressed("space")):
-		GameController.Pause()
+		player.ship.Fire(true)
+	if(event.is_action_released("space")):
+		player.ship.Fire(false)
 	if(event.is_action_pressed("ui_cancel")):
 		if(!GameController.ui.startMenu.visible):
 			GameController.ui.ActivatePauseMenu()
