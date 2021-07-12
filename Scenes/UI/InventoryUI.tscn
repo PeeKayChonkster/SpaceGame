@@ -1,0 +1,440 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/UI/InventorySlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Inventory.gd" type="Script" id=2]
+[ext_resource path="res://src/Textures/UI/Buttons/CancelButton_idle.png" type="Texture" id=3]
+[ext_resource path="res://src/Textures/UI/Buttons/CancelButton_pressed.png" type="Texture" id=4]
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.113725, 1, 0.807843 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.0156863 )
+border_color = Color( 0.8, 0.8, 0.8, 0.105882 )
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 13
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+outline_size = 1
+outline_color = Color( 0.470588, 0.466667, 1, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0, 0, 0.807843 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 12
+outline_size = 1
+outline_color = Color( 1, 0.411765, 0.411765, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.0862745, 0.592157, 0, 0.807843 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
+outline_size = 1
+outline_color = Color( 0.521569, 0.972549, 0.482353, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="InventoryUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ship" type="Panel" parent="HBoxContainer"]
+margin_right = 507.0
+margin_bottom = 600.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HBoxContainer/Ship"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 535
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipTexture" type="TextureRect" parent="HBoxContainer/Ship/VSplitContainer"]
+margin_right = 507.0
+margin_bottom = 535.0
+mouse_filter = 2
+expand = true
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Ship/VSplitContainer"]
+margin_top = 547.0
+margin_right = 507.0
+margin_bottom = 600.0
+custom_constants/margin_right = 20
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 10
+
+[node name="StatsPanel" type="Panel" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer"]
+self_modulate = Color( 1, 1, 1, 0.360784 )
+margin_left = 50.0
+margin_right = 487.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShieldBar" type="ProgressBar" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+margin_right = 437.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 15, 0 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer/ShieldBar"]
+anchor_bottom = 1.0
+margin_left = -38.0976
+margin_top = -2.77795
+margin_right = 0.902378
+margin_bottom = 3.22205
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
+text = "Shield"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HullBar" type="ProgressBar" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+margin_top = 15.0
+margin_right = 437.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 15, 0 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer/HullBar"]
+anchor_bottom = 1.0
+margin_left = -27.2349
+margin_top = -2.24744
+margin_right = 11.7651
+margin_bottom = 2.75256
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
+text = "Hull"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FuelBar" type="ProgressBar" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+margin_top = 31.0
+margin_right = 437.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 15, 0 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer/FuelBar"]
+anchor_bottom = 1.0
+margin_left = -27.6763
+margin_top = -2.62201
+margin_right = 11.3237
+margin_bottom = 2.37799
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
+text = "Fuel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainter" type="MarginContainer" parent="HBoxContainer/Ship"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="Panel" parent="HBoxContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 507.0
+margin_right = 517.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 10, 0 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Inventory" type="Panel" parent="HBoxContainer"]
+margin_left = 517.0
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Inventory/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 487.0
+margin_bottom = 586.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer"]
+margin_left = 7.0
+margin_right = 459.0
+margin_bottom = 566.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 4
+custom_constants/hseparation = 4
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventorySlot" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 110.0
+margin_bottom = 110.0
+
+[node name="InventorySlot2" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_right = 224.0
+margin_bottom = 110.0
+
+[node name="InventorySlot3" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_right = 338.0
+margin_bottom = 110.0
+
+[node name="InventorySlot4" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_right = 452.0
+margin_bottom = 110.0
+
+[node name="InventorySlot5" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 114.0
+margin_right = 110.0
+margin_bottom = 224.0
+
+[node name="InventorySlot6" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 114.0
+margin_right = 224.0
+margin_bottom = 224.0
+
+[node name="InventorySlot7" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 114.0
+margin_right = 338.0
+margin_bottom = 224.0
+
+[node name="InventorySlot8" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 114.0
+margin_right = 452.0
+margin_bottom = 224.0
+
+[node name="InventorySlot9" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 228.0
+margin_right = 110.0
+margin_bottom = 338.0
+
+[node name="InventorySlot10" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 228.0
+margin_right = 224.0
+margin_bottom = 338.0
+
+[node name="InventorySlot11" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 228.0
+margin_right = 338.0
+margin_bottom = 338.0
+
+[node name="InventorySlot12" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 228.0
+margin_right = 452.0
+margin_bottom = 338.0
+
+[node name="InventorySlot13" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 342.0
+margin_right = 110.0
+margin_bottom = 452.0
+
+[node name="InventorySlot14" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 342.0
+margin_right = 224.0
+margin_bottom = 452.0
+
+[node name="InventorySlot15" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 342.0
+margin_right = 338.0
+margin_bottom = 452.0
+
+[node name="InventorySlot16" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 342.0
+margin_right = 452.0
+margin_bottom = 452.0
+
+[node name="InventorySlot17" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 456.0
+margin_right = 110.0
+margin_bottom = 566.0
+
+[node name="InventorySlot18" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 456.0
+margin_right = 224.0
+margin_bottom = 566.0
+
+[node name="InventorySlot19" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 456.0
+margin_right = 338.0
+margin_bottom = 566.0
+
+[node name="InventorySlot20" parent="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 456.0
+margin_right = 452.0
+margin_bottom = 566.0
+
+[node name="CloseButton" type="TextureButton" parent="."]
+margin_left = 21.0
+margin_top = 17.0
+margin_right = 81.0
+margin_bottom = 77.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="CloseButton" to="." method="_on_CloseButton_button_up"]
+
+[editable path="HBoxContainer/Inventory/MarginContainer/CenterContainer/GridContainer/InventorySlot"]

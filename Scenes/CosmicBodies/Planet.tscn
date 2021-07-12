@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Planet.gd" type="Script" id=1]
+[ext_resource path="res://src/Textures/Planets/WhiteSun.png" type="Texture" id=2]
+[ext_resource path="res://src/Textures/Planets/WhiteSun_n.png" type="Texture" id=3]
+[ext_resource path="res://src/Materials/PlanetMaterial.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/UI/PlanetUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Textures/Planets/PlanetRing1.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 244.171
+
+[node name="Planet" type="Node2D" groups=[
+"minimap_objects",
+]]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
+
+[node name="Ring" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="PlanetUI" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

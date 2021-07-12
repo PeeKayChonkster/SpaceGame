@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/AttackUI.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0117647, 0.0745098, 1, 1 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0.0352941, 0.4, 0 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.12549 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 0.0117647, 0.0117647, 1 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0.0352941, 0.4, 0 )
+
+[node name="AttackUI" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.952941 )
+anchor_left = 0.5
+anchor_right = 0.5
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.603922 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -126.0
+margin_right = 126.0
+margin_bottom = 65.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TargetLabel" type="Label" parent="Panel/CenterContainer"]
+margin_right = 252.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+text = "Target"
+align = 1
+
+[node name="NameLabel" type="Label" parent="Panel/CenterContainer"]
+margin_top = 21.0
+margin_right = 252.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+margin_top = 43.0
+margin_right = 252.0
+margin_bottom = 65.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShieldBar" type="ProgressBar" parent="Panel/CenterContainer/VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 9.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="HullBar" type="ProgressBar" parent="Panel/CenterContainer/VBoxContainer"]
+margin_top = 13.0
+margin_right = 252.0
+margin_bottom = 22.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[connection signal="gui_input" from="Panel" to="." method="_on_Panel_gui_input"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Textures/UI/Minimap/Minimap_Frame.png" type="Texture" id=1]
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/PlanetUI.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 1
+outline_color = Color( 0.027451, 0.0235294, 0.168627, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 27
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+outline_size = 1
+outline_color = Color( 0.0352941, 0.0196078, 0.164706, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="PlanetUI" type="Panel"]
+modulate = Color( 1, 1, 1, 0.960784 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -11.0
+custom_fonts/font = SubResource( 1 )
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="News" type="PanelContainer" parent="NinePatchRect/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 59.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/TabContainer/News"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 988.0
+margin_bottom = 509.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 76
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="NewsTextLabel" type="RichTextLabel" parent="NinePatchRect/TabContainer/News/MarginContainer"]
+margin_left = 5.0
+margin_top = 76.0
+margin_right = 976.0
+margin_bottom = 497.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/bold_italics_font = SubResource( 2 )
+custom_fonts/italics_font = SubResource( 2 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 2 )
+text = "Loading..."
+
+[node name="Shop" type="PanelContainer" parent="NinePatchRect/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 59.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="NameLabel" type="Label" parent="NinePatchRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -89.2964
+margin_top = 85.1805
+margin_right = 73.7036
+margin_bottom = 122.181
+custom_fonts/font = SubResource( 3 )
+text = "Planet name"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TakeoffButton" type="Button" parent="NinePatchRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -140.476
+margin_top = 11.5038
+margin_right = -11.4757
+margin_bottom = 58.5038
+custom_fonts/font = SubResource( 4 )
+text = "Take Off"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+pause_mode = 2
+use_threads = true
+
+[connection signal="button_up" from="NinePatchRect/TakeoffButton" to="." method="_on_TakeoffButton_button_up"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

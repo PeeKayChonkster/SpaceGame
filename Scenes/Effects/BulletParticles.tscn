@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/ParticlesOneShot.gd" type="Script" id=1]
+[ext_resource path="res://src/Materials/ParticleMaterials/BulletParticlesMaterial.tres" type="Material" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+light_mode = 1
+
+[node name="BulletParticles" type="Particles2D"]
+material = SubResource( 1 )
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = ExtResource( 2 )
+script = ExtResource( 1 )

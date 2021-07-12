@@ -1,0 +1,8 @@
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\obj\Debug\Space Game.csprojAssemblyReference.cache
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\obj\Debug\Space Game.AssemblyInfoInputs.cache
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\obj\Debug\Space Game.AssemblyInfo.cs
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\obj\Debug\Space Game.csproj.CoreCompileInputs.cache
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\bin\Debug\Space Game.dll
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\bin\Debug\Space Game.pdb
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\obj\Debug\Space Game.dll
+D:\Projects\Programing projects\Godot\SpaceGame\.mono\temp\obj\Debug\Space Game.pdb

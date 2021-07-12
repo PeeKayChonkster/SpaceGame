@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/ActorCamera.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/PlayerController.tscn" type="PackedScene" id=4]
+
+[node name="Player" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource( 1 )
+followTarget = NodePath("..")
+smoothness = 0.5
+dynamicMinZoom = 1.5
+dynamicMaxZoom = 2.5
+dynamicZoomSpeed = 2.0
+follow = true
+progressiveCursorComponent = 12.0
+progressiveVelocityComponent = 7.0
+
+[node name="PlayerController" parent="." instance=ExtResource( 4 )]
+pause_mode = 2

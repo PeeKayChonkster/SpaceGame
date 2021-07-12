@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/ShieldGenerator.gd" type="Script" id=1]
+[ext_resource path="res://src/Textures/Items/ShieldGenerator/TestShieldGenerator.png" type="Texture" id=2]
+[ext_resource path="res://src/Textures/Light/EnergyShield.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+light_mode = 1
+
+[node name="TestShieldGenerator" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+itemName = "TestShieldGenerator"
+inventoryTexture = ExtResource( 2 )
+description = "Cheap shield generator."
+type = 3
+maxEnergy = 20.0
+timeBeforeRecharge = 5.0
+chargeSpeed = 0.5
+color = Color( 0.160784, 0.490196, 0.956863, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 1 )
+scale = Vector2( 3, 3 )
+z_index = 5
+texture = ExtResource( 3 )

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/ParticlesOneShot.gd" type="Script" id=1]
+[ext_resource path="res://src/Materials/ParticleMaterials/ShipExplosionParticlesMaterial.tres" type="Material" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+light_mode = 1
+
+[node name="ShipExplosion" type="Particles2D"]
+material = SubResource( 1 )
+amount = 200
+lifetime = 20.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = ExtResource( 2 )
+script = ExtResource( 1 )
+lifeTime = 15.0

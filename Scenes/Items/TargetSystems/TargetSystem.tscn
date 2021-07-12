@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/UI/TargetSystemReticle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/TargetSystem.gd" type="Script" id=2]
+[ext_resource path="res://src/Textures/Items/TargetSystems/TargetSystem.png" type="Texture" id=3]
+
+[node name="TargetSystem" type="Node2D"]
+script = ExtResource( 2 )
+itemName = "TargetSystem"
+inventoryTexture = ExtResource( 3 )
+description = "Cheapest target system you can find on a market. It is slow as a pregnant cow, but still gives you some superiority against old time guns without target systems.
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+type = 1
+workSpeedMultiplier = 1.0
+
+[node name="TargetSystemReticle" parent="." instance=ExtResource( 1 )]
+
+[editable path="TargetSystemReticle"]

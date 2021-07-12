@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/LoadingScreen.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.101961, 0, 0.462745, 1 )
+
+[node name="LoadingScreen" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -53.5
+margin_top = -147.613
+margin_right = 53.5
+margin_bottom = -109.613
+custom_fonts/font = SubResource( 1 )
+text = "Loading"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -49.0272
+margin_bottom = 0.972778
+custom_styles/fg = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,205 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/ShipClickPanel.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/ShipSlot.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Items/ShieldGenerators/TestShieldGenerator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Items/Engines/TestEngine.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Textures/Ships/Exaust_white.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Ship.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/PilotSeat.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Items/Weapons/MachineGun.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Textures/Ships/TestShip.png" type="Texture" id=9]
+[ext_resource path="res://src/Materials/ExaustJiggle.tres" type="Material" id=10]
+[ext_resource path="res://src/Textures/Ships/Ship2_n.png" type="Texture" id=11]
+[ext_resource path="res://src/Textures/Ships/Ship2.png" type="Texture" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:wobble")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.5, 0.1 ), Vector2( -0.5, -0.1 ), Vector2( 0.1, -0.5 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 1e-05, 1e-05 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.1, 0.1 ) ]
+}
+
+[node name="ShipMoth" type="KinematicBody2D"]
+scale = Vector2( 0.3, 0.3 )
+collision_layer = 3
+collision_mask = 0
+script = ExtResource( 6 )
+maxHullIntegrity = 200.0
+inventoryTexture = ExtResource( 9 )
+fuelCapacity = 200.0
+mass = 1500.0
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 13 )
+normal_map = ExtResource( 11 )
+
+[node name="ShipClickPanel" type="Panel" parent="."]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -292.89
+margin_top = -280.89
+margin_right = -274.89
+margin_bottom = -270.89
+rect_scale = Vector2( 33, 59.4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -161.652, 55.0764, -207.614, 52.4248, -215.569, -12.9826, -71.4957, -60.7123, -13.5904, -122.618, 14.241, -122.584, 66.3901, -62.4801, 216.65, -11.2149, 206.044, 52.4248, 161.85, 54.1925, 144.172, 78.0574, 95.5582, 78.9413, 54.8996, 107.226, -51.1664, 106.342, -94.4767, 77.1735, -141.323, 78.0574 )
+
+[node name="Exaust" type="Node2D" parent="."]
+modulate = Color( 0.27451, 0.454902, 1, 0.807843 )
+position = Vector2( -0.0992126, 71.0252 )
+
+[node name="Sprite" type="Sprite" parent="Exaust"]
+material = ExtResource( 10 )
+position = Vector2( -129.152, 33.2448 )
+scale = Vector2( 0.24919, 0.894812 )
+texture = ExtResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Exaust"]
+material = ExtResource( 10 )
+position = Vector2( -104.741, 33.2448 )
+scale = Vector2( 0.24919, 0.894812 )
+texture = ExtResource( 5 )
+
+[node name="Sprite3" type="Sprite" parent="Exaust"]
+material = ExtResource( 10 )
+position = Vector2( 106.295, 33.2448 )
+scale = Vector2( 0.24919, 0.894812 )
+texture = ExtResource( 5 )
+
+[node name="Sprite4" type="Sprite" parent="Exaust"]
+material = ExtResource( 10 )
+position = Vector2( 130.707, 33.2448 )
+scale = Vector2( 0.24919, 0.894812 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+autoplay = "Idle"
+anims/Idle = SubResource( 1 )
+anims/Landing = SubResource( 2 )
+anims/Takeoff = SubResource( 3 )
+
+[node name="PilotSeat" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Slots" type="Node2D" parent="."]
+
+[node name="WeaponSlot1" type="Node2D" parent="Slots"]
+position = Vector2( -167.386, -2.27521 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MachineGun" parent="Slots/WeaponSlot1" instance=ExtResource( 8 )]
+
+[node name="WeaponSlot2" type="Node2D" parent="Slots"]
+position = Vector2( 166.972, -5.25643 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MachineGun" parent="Slots/WeaponSlot2" instance=ExtResource( 8 )]
+
+[node name="WeaponSlot3" type="Node2D" parent="Slots"]
+position = Vector2( -72.4132, -35.7046 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MachineGun" parent="Slots/WeaponSlot3" instance=ExtResource( 8 )]
+
+[node name="WeaponSlot4" type="Node2D" parent="Slots"]
+position = Vector2( 71.4279, -38.8544 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MachineGun" parent="Slots/WeaponSlot4" instance=ExtResource( 8 )]
+
+[node name="TargetSystemSlot" type="Node2D" parent="Slots"]
+position = Vector2( 0, -110.88 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 1
+
+[node name="EngineSlot" type="Node2D" parent="Slots"]
+position = Vector2( 0, 60.5425 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 2
+
+[node name="TestEngine" parent="Slots/EngineSlot" instance=ExtResource( 4 )]
+
+[node name="ShieldGeneratorSlot" type="Node2D" parent="Slots"]
+position = Vector2( 0, 0.950745 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 3
+
+[node name="TestShieldGenerator" parent="Slots/ShieldGeneratorSlot" instance=ExtResource( 3 )]
+
+[node name="Tween" type="Tween" parent="."]
+pause_mode = 2
+
+[connection signal="gui_input" from="ShipClickPanel" to="ShipClickPanel" method="_on_ShipClickPanel_gui_input"]
+
+[editable path="Slots/ShieldGeneratorSlot/TestShieldGenerator"]

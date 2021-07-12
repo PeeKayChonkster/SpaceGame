@@ -1,0 +1,195 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/PlayerUI.gd" type="Script" id=1]
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.113725, 1, 0.807843 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.0156863 )
+border_color = Color( 0.8, 0.8, 0.8, 0.105882 )
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 13
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
+outline_size = 1
+outline_color = Color( 0.470588, 0.466667, 1, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0, 0, 0.807843 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 12
+outline_size = 1
+outline_color = Color( 1, 0.411765, 0.411765, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0862745, 0.592157, 0, 0.807843 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 12
+outline_size = 1
+outline_color = Color( 0.521569, 0.972549, 0.482353, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="PlayerUI" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainPanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.360784 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 39.9771
+margin_top = -90.1588
+margin_right = 286.977
+margin_bottom = -36.1588
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShieldBar" type="ProgressBar" parent="MainPanel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+margin_right = 246.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 0 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/ShieldBar"]
+anchor_bottom = 1.0
+margin_right = 39.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
+text = "Shield"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HullBar" type="ProgressBar" parent="MainPanel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+margin_top = 19.0
+margin_right = 246.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 15, 0 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/HullBar"]
+anchor_bottom = 1.0
+margin_right = 39.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
+text = "Hull"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FuelBar" type="ProgressBar" parent="MainPanel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+margin_top = 38.0
+margin_right = 246.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 15, 0 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/FuelBar"]
+anchor_bottom = 1.0
+margin_right = 39.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
+text = "Fuel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_left = 25.4271
+margin_top = 22.2487
+margin_right = 149.427
+margin_bottom = 181.249
+custom_constants/separation = 21
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryButton" type="Button" parent="Buttons"]
+margin_right = 124.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 7 )
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InteractButton" type="Button" parent="Buttons"]
+margin_top = 60.0
+margin_right = 124.0
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 7 )
+text = "Interact"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="MainPanel" to="." method="_on_Panel_gui_input"]
+[connection signal="button_up" from="Buttons/InventoryButton" to="." method="_on_InventoryButton_button_up"]
+[connection signal="button_up" from="Buttons/InteractButton" to="." method="_on_InteractButton_button_up"]

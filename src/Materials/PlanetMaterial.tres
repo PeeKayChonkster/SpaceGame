@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Shaders/Planet.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 101.1
+persistence = 0.518
+lacunarity = 2.12
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+seed = 6
+period = 108.0
+persistence = 0.59
+lacunarity = 2.17
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/xRotation = 0.011
+shader_param/yRotation = 0.017
+shader_param/waterLevel = 0.47
+shader_param/atmoLevel = 0.563
+shader_param/waterColor = Color( 0.0509804, 0.254902, 0.643137, 1 )
+shader_param/landColor = Color( 0.164706, 0.392157, 0.0745098, 1 )
+shader_param/atmoColor = Color( 1, 1, 1, 1 )
+shader_param/brightness = 0.805
+shader_param/noise = SubResource( 4 )
+shader_param/atmoNoise = SubResource( 2 )

@@ -1,0 +1,50 @@
+[gd_resource type="ParticlesMaterial" load_steps=7 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.00775194, 0.914729 )
+colors = PoolColorArray( 1, 0.947266, 0.789063, 1, 0.435547, 0.433919, 0.42704, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+min_value = -1.0
+_data = [ Vector2( 0, -0.909091 ), 0.0, 0.0, 0, 0, Vector2( 1, -0.8 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.388158, 0.163636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[resource]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 5.46
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 1.0
+angular_velocity = 150.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 10.0
+linear_accel_random = 0.76
+radial_accel = 23.26
+radial_accel_random = 1.0
+tangential_accel = 13.95
+tangential_accel_random = 1.0
+damping = 10.0
+damping_random = 0.83
+scale = 5.0
+scale_random = 1.0
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 2 )
+hue_variation_random = 0.05
+hue_variation_curve = SubResource( 4 )

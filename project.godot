@@ -1,0 +1,145 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "InventoryItem",
+"language": "GDScript",
+"path": "res://Scripts/InventoryItem.gd"
+}, {
+"base": "Panel",
+"class": "InventorySlot",
+"language": "GDScript",
+"path": "res://Scripts/InventorySlot.gd"
+}, {
+"base": "Node2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Scripts/Item.gd"
+}, {
+"base": "Node2D",
+"class": "NPC",
+"language": "GDScript",
+"path": "res://Scripts/NPC.gd"
+}, {
+"base": "Node2D",
+"class": "Planet",
+"language": "GDScript",
+"path": "res://Scripts/Planet.gd"
+}, {
+"base": "Node2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/Player.gd"
+}, {
+"base": "Node2D",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://Scripts/Ship.gd"
+}, {
+"base": "Node2D",
+"class": "ShipSlot",
+"language": "GDScript",
+"path": "res://Scripts/ShipSlot.gd"
+}, {
+"base": "Node2D",
+"class": "Star",
+"language": "GDScript",
+"path": "res://Scripts/Star.gd"
+}, {
+"base": "Node2D",
+"class": "StarSystem",
+"language": "GDScript",
+"path": "res://Scripts/StarSystem.gd"
+}, {
+"base": "Sprite",
+"class": "Stargate",
+"language": "GDScript",
+"path": "res://Scripts/Stargate.gd"
+} ]
+_global_script_class_icons={
+"InventoryItem": "",
+"InventorySlot": "",
+"Item": "",
+"NPC": "",
+"Planet": "",
+"Player": "",
+"Ship": "",
+"ShipSlot": "",
+"Star": "",
+"StarSystem": "",
+"Stargate": ""
+}
+
+[application]
+
+config/name="Space Game"
+run/main_scene="res://Scenes/TestWorld.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+ItemDatabase="*res://Scenes/ItemDatabase.tscn"
+GameController="*res://Scenes/GameController.tscn"
+DebugWindow="*res://Scenes/Debug/DebugWindow.tscn"
+MapManager="*res://Scenes/MapManager.tscn"
+Tools="*res://Scripts/Tools.gd"
+MaterialsLoader="*res://Scripts/MaterialsLoader.gd"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[input]
+
+P={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
+O={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":79,"unicode":0,"echo":false,"script":null)
+ ]
+}
+M={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ShowDebugUI={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"unicode":0,"echo":false,"script":null)
+ ]
+}
+C={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
+space={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_2="Damage"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

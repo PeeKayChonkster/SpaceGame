@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Engine.gd" type="Script" id=1]
+[ext_resource path="res://src/Textures/Items/Engines/TestEngine.png" type="Texture" id=2]
+
+[node name="TestEngine" type="Node2D"]
+script = ExtResource( 1 )
+itemName = "TestEngine"
+inventoryTexture = ExtResource( 2 )
+type = 2
+thrust = 2000.0
+maxSpeed = 400.0
+torque = 1000.0
+breaks = 1100.0
