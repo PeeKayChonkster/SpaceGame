@@ -16,14 +16,15 @@ func _LinkWithShip(slot):
 	# if ship has item, add it to this slot
 	if (shipSlotNode.item && !item):
 		while(!GameController.initialized): yield(get_tree(), "idle_frame")
-		Put(shipSlotNode.item.inventoryItem, false)
+		Put(shipSlotNode.item.GetInventoryItem(), false)
 	type = shipSlotNode.type
 	$Label.text = ItemDatabase.GetTypeAsString(type)
 
 func Put(newItem: InventoryItem, instantiate = true):
 	.Put(newItem)
 	if(instantiate):
-		shipSlotNode.add_child(ItemDatabase.GetItem(newItem.itemName, newItem))
+		shipSlotNode.add_child(ItemDatabase.GetItem(newItem.itemName))
+		shipSlotNode.item.GetValuesFromInventoryItem(newItem)
 		shipSlotNode.Update()
 
 func RemoveItem():
@@ -39,7 +40,7 @@ func get_drag_data(_position):
 		newControl.add_child(newIcon)
 		newIcon.rect_position += -0.5 * newIcon.rect_size
 		set_drag_preview(newControl)
-		var sendItem = item
+		var sendItem = shipSlotNode.item.GetInventoryItem()
 		RemoveItem()
 		return sendItem
 	else:

@@ -14,7 +14,6 @@ func _ready():
 func Update():
 	if(get_child_count() != 0):
 		item = get_child(0)
-		item.GetValuesFromInventoryItem()
 	else:
 		item = null
 	ship.InitializeSlots()

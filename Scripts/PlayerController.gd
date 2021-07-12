@@ -15,15 +15,19 @@ func _unhandled_input(event):
 	##### MOVING #####
 	if(OS.has_touchscreen_ui_hint()):
 		if (event is InputEventScreenTouch):
-			player.camera.dynamic = true   ### <-test
-			if(event.is_pressed()):
-				player.screenTouch = true
-				# don't move cursor if pause
-				if(!get_tree().paused):
-					player.SetReticle()
-				player.Unfollow()
-			else:
-				player.screenTouch = false
+			if(event.index == 0):    ### one touch
+				player.camera.dynamic = true   ### <-test
+				if(event.is_pressed()):
+					player.screenTouch = true
+					# don't move cursor if pause
+					if(!get_tree().paused):
+						player.SetReticle()
+					player.Unfollow()
+				else:
+					player.screenTouch = false
+			else:   ### multiple touches
+				if(event.is_pressed()):
+					
 	else:
 		if (event is InputEventMouseButton):
 			if(event.button_index == 1):

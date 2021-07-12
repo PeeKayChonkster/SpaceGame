@@ -60,14 +60,12 @@ func LoadShips(path: String):
 		dir.list_dir_end()
 
 ### Get inventory item as a packed scene, give him InventoryItem optionally
-func GetItem(itemName: String, inventoryItem: InventoryItem = null):
+func GetItem(itemName: String):
 	var item = items.get(itemName)
 	if(!item): 
 		push_error("Can't find item \"" + itemName + "\" in itemDatabase")
 		return
 	item = item.instance()
-	if (inventoryItem):
-		item.inventoryItem = inventoryItem
 	return item
 
 func GetInventoryItem(itemName: String):

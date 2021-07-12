@@ -5,7 +5,7 @@ export(float) var timeBeforeRecharge
 export(float) var chargeSpeed
 export(Color) var color
 
-onready var energy = maxEnergy setget _set_energy
+onready var energy = maxEnergy #setget _set_energy
 onready var blockTimer = Timer.new()
 onready var sprite = $Sprite
 onready var ship = get_parent().get_parent().get_parent()
@@ -14,6 +14,7 @@ onready var tween = Tween.new()
 var blocked = false
 var animating = false
 var maxSpriteAlpha = 0.6
+
 
 func _ready():
 	add_child(blockTimer)
@@ -59,19 +60,19 @@ func GetInventoryItem() -> InventoryItem:
 	inventoryItem.values = {"energy" : energy}
 	return inventoryItem
 
-func GetValuesFromInventoryItem():
-	.GetValuesFromInventoryItem()
-	if(inventoryItem.values.has("energy")):
+func GetValuesFromInventoryItem(item : InventoryItem):
+	.GetValuesFromInventoryItem(item)
+	if(item.values.has("energy")):
 		### TakeDamage called instead of simple assignment, so that recharge will begin
-		var _temp = TakeDamage(maxEnergy - inventoryItem.values.energy)
+		var _temp = TakeDamage(maxEnergy - item.values.energy)
 
 func _BlockTimeout():
 	blocked = false
 	Recharge()
 
 ### setters/getters ###
-func _set_energy(value):
-	.UpdateInventoryItemValue("energy", value)
-	energy = value
+#func _set_energy(value):
+#	.UpdateInventoryItemValue("energy", value)
+#	energy = value
 #######
 	

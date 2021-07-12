@@ -26,7 +26,7 @@ func Deactivate():
 	hide()
 
 func GetNews():
-	var query = MapManager.randomQueries[GameController.rng.randi_range(0, GameController.randomQueries.size() - 1)]
+	var query = MapManager.randomQueries[GameController.rng.randi_range(0, MapManager.randomQueries.size() - 1)]
 	var data = {'filter': 0, 'intro': 0, 'query': query}
 	var headers = ["Content-Type: application/json", 'Origin: https://yandex.ru', 'Referer: https://yandex.ru/']
 	var dataJSONString = JSON.print(data)

@@ -151,6 +151,9 @@ func Explode():
 		pilotSeat.global_position = global_position
 	queue_free()
 
+func Fire():
+	
+
 func SpendFuel(magnitude, whichRatio, delta):
 	var coef
 	match(whichRatio):
