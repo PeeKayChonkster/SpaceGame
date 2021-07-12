@@ -1,18 +1,22 @@
 extends Control
 
 
-onready var hullBar = $MainPanel/VBoxContainer/HullBar
-onready var shieldBar = $MainPanel/VBoxContainer/ShieldBar
-onready var fuelBar = $MainPanel/VBoxContainer/FuelBar
+onready var hullBar = find_node("HullBar")
+onready var shieldBar = find_node("ShieldBar")
+onready var fuelBar = find_node("FuelBar")
 onready var inventoryButton = $Buttons/InventoryButton
 onready var interactButton = $Buttons/InteractButton
+onready var attackModeButton = $AttackModeButton
 
 var player
 var interactionTarget = null
+var tween: Tween
 
 func _ready():
 	var _error = GameController.connect("player_initialized", self, "_Initialize")
 	interactButton.hide()
+	tween = Tween.new()
+	add_child(tween)
 
 
 func Activate():
@@ -69,9 +73,11 @@ func SetBarMaxValue(mask: int, value: float):
 	if(mask & GameController.UPDATE_FUEL):
 		fuelBar.max_value = value
 
+
 func _on_Panel_gui_input(event):
 	if(event is InputEventMouseButton && event.button_index == 1 && !event.pressed):
-		GameController.Pause()
+		#GameController.Pause()
+		pass
 
 func _on_InventoryButton_button_up():
 	GameController.ui.ActivateInventory()
@@ -85,3 +91,9 @@ func _on_AttackModeButton_toggled(button_pressed):
 		player.ship.mode = GameController.SHIPMODE_ATTACK
 	elif(player.ship.mode != GameController.SHIPMODE_DEAD):
 		player.ship.mode = GameController.SHIPMODE_IDLE
+	var _err = tween.interpolate_property(attackModeButton, "rect_scale", Vector2(1.0, 1.0), Vector2(1.2, 1.2), 0.1)
+	_err = tween.start()
+	yield(Tools.CreateTimer(0.1, self), "timeout")
+	_err = tween.interpolate_property(attackModeButton, "rect_scale", Vector2(1.2, 1.2), Vector2(1.0, 1.0), 0.1)
+	_err = tween.start()
+

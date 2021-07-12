@@ -93,7 +93,7 @@ func TakeOff(planet: Planet):
 	ship.TakeOff()
 
 func AddAttackTarget(target):
-	if(attackTarget == target || attackTarget.mode == GameController.SHIPMODE_DEAD): return
+	if(attackTarget == target || target.mode == GameController.SHIPMODE_DEAD): return
 	if(attackTarget): RemoveAttackTarget()
 	attackTarget = target
 	attackTarget.connect("death", self, "_OnTargetDeath")

@@ -157,7 +157,7 @@ func SpawnRandomStarSystem(coord: Vector2, entryStargate = null) -> StarSystem:
 	# if player travelled to the new system through a stargate, create new stargate, 
 	# positioned accordingly to the old one
 	if(entryStargate): 
-		numberOfStargates -= 1
+		if(numberOfStargates > 1): numberOfStargates -= 1
 		var newStargatePosition = entryStargate.GetInfo().position.normalized() * stargateOrbitRadius * -1.0
 		var newStargate = SpawnRandomStargate(newStargatePosition, newStarSystem)
 		newStarSystem.stargates.append(newStargate)

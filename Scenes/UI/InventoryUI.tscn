@@ -13,7 +13,7 @@ border_width_bottom = 3
 border_color = Color( 0, 0, 0, 0 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.0156863 )
+bg_color = Color( 0, 0, 0, 0.133333 )
 border_color = Color( 0.8, 0.8, 0.8, 0.105882 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -98,14 +98,16 @@ margin_top = 547.0
 margin_right = 507.0
 margin_bottom = 600.0
 custom_constants/margin_right = 20
+custom_constants/margin_top = 5
 custom_constants/margin_left = 50
-custom_constants/margin_bottom = 10
+custom_constants/margin_bottom = 5
 
 [node name="StatsPanel" type="Panel" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer"]
 self_modulate = Color( 1, 1, 1, 0.360784 )
 margin_left = 50.0
+margin_top = 5.0
 margin_right = 487.0
-margin_bottom = 43.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {

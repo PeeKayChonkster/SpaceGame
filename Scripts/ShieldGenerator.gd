@@ -28,8 +28,8 @@ func Recharge():
 		var delta = get_process_delta_time()
 		self.energy += chargeSpeed * delta
 		ship.SpendFuel(chargeSpeed, 1, delta)
-		ship.UpdateUIBars(GameController.SHIPMODE_SHIELD)
-		yield(Tools.CreateTimer(delta), "timeout")
+		ship.UpdateUIBars(GameController.UPDATE_SHIELD)
+		yield(Tools.CreateTimer(delta, self), "timeout")
 
 # returns unblocked damage
 func TakeDamage(dmg: float) -> float:

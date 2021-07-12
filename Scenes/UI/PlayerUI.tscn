@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/PlayerUI.gd" type="Script" id=1]
 [ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/Textures/UI/bullet1.png" type="Texture" id=3]
+[ext_resource path="res://src/Textures/UI/bullet2.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.113725, 1, 0.807843 )
@@ -11,7 +12,7 @@ border_width_bottom = 3
 border_color = Color( 0, 0, 0, 0 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.0156863 )
+bg_color = Color( 0, 0, 0, 0.368627 )
 border_color = Color( 0.8, 0.8, 0.8, 0.105882 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -56,12 +57,6 @@ font_data = ExtResource( 2 )
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=10]
-outline_size = 1
-outline_color = Color( 0.188235, 0.0235294, 0.0235294, 1 )
-use_filter = true
-font_data = ExtResource( 2 )
-
 [node name="PlayerUI" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
@@ -73,28 +68,41 @@ __meta__ = {
 }
 
 [node name="MainPanel" type="Panel" parent="."]
-self_modulate = Color( 1, 1, 1, 0.360784 )
+self_modulate = Color( 1, 1, 1, 0 )
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 39.9771
+margin_left = 45.7679
 margin_top = -90.1588
-margin_right = 286.977
+margin_right = 292.768
 margin_bottom = -36.1588
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShieldBar" type="ProgressBar" parent="MainPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 243.0
+margin_bottom = 51.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShieldBar" type="ProgressBar" parent="MainPanel/MarginContainer/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.611765 )
-margin_right = 246.0
-margin_bottom = 15.0
+margin_right = 240.0
+margin_bottom = 13.0
 rect_min_size = Vector2( 15, 0 )
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -105,9 +113,12 @@ custom_fonts/font = SubResource( 3 )
 value = 50.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="MainPanel/VBoxContainer/ShieldBar"]
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/ShieldBar"]
 anchor_bottom = 1.0
-margin_right = 39.0
+margin_left = -40.9813
+margin_top = -1.33636
+margin_right = -1.98132
+margin_bottom = 1.66364
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
@@ -116,11 +127,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HullBar" type="ProgressBar" parent="MainPanel/VBoxContainer"]
+[node name="HullBar" type="ProgressBar" parent="MainPanel/MarginContainer/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.611765 )
-margin_top = 19.0
-margin_right = 246.0
-margin_bottom = 34.0
+margin_top = 17.0
+margin_right = 240.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 15, 0 )
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -131,9 +142,12 @@ custom_fonts/font = SubResource( 3 )
 value = 50.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="MainPanel/VBoxContainer/HullBar"]
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/HullBar"]
 anchor_bottom = 1.0
-margin_right = 39.0
+margin_left = -28.9542
+margin_top = -2.22729
+margin_right = 10.0458
+margin_bottom = 0.772705
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
@@ -142,11 +156,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FuelBar" type="ProgressBar" parent="MainPanel/VBoxContainer"]
+[node name="FuelBar" type="ProgressBar" parent="MainPanel/MarginContainer/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.611765 )
-margin_top = 38.0
-margin_right = 246.0
-margin_bottom = 54.0
+margin_top = 34.0
+margin_right = 240.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 15, 0 )
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -157,9 +171,12 @@ custom_fonts/font = SubResource( 3 )
 value = 50.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="MainPanel/VBoxContainer/FuelBar"]
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/FuelBar"]
 anchor_bottom = 1.0
-margin_right = 39.0
+margin_left = -28.5088
+margin_top = -1.33636
+margin_right = 10.4912
+margin_bottom = 1.66364
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 0.635294 )
@@ -197,23 +214,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AttackModeButton" type="CheckButton" parent="."]
+[node name="AttackModeButton" type="TextureButton" parent="."]
 self_modulate = Color( 1, 1, 1, 0.831373 )
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -14.6652
-margin_top = -24.6832
-margin_right = 115.335
-margin_bottom = 33.3168
-rect_rotation = 90.0
+anchor_bottom = 1.028
+margin_left = -84.3937
+margin_top = 289.878
+margin_right = -14.3937
+margin_bottom = -256.922
+rect_min_size = Vector2( 70, 70 )
+rect_pivot_offset = Vector2( 35, 35 )
+focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 10 )
-icon = ExtResource( 3 )
-align = 1
-expand_icon = true
+toggle_mode = true
+enabled_focus_mode = 0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
