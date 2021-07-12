@@ -109,18 +109,31 @@ material = SubResource( 9 )
 
 [node name="TestShip" parent="Ships" instance=ExtResource( 5 )]
 position = Vector2( 257.859, -924.342 )
+mass = null
+ownerIsPlayer = null
+createPilotOnStart = null
+wobble = null
 
 [node name="TestShip2" parent="Ships" instance=ExtResource( 5 )]
 position = Vector2( 1199.22, -756.924 )
+mass = null
+ownerIsPlayer = null
+createPilotOnStart = null
+wobble = null
 
 [node name="ShipMoth" parent="Ships" instance=ExtResource( 8 )]
 position = Vector2( -1052, -844 )
 inventoryTexture = ExtResource( 11 )
+ownerIsPlayer = null
+createPilotOnStart = null
+wobble = null
 
 [node name="Ship_Drone" parent="Ships" instance=ExtResource( 7 )]
 position = Vector2( 1520, 144 )
 mass = 500.0
 ownerIsPlayer = true
+createPilotOnStart = null
+wobble = null
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
 
