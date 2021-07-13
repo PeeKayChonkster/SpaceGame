@@ -8,6 +8,7 @@ export(ItemDatabase.ITEM_TYPE) var type
 export(bool) var stackable = false
 export(int) var stackSize = 1
 export(float) var quantity = 1
+export(int) var price = 10
 
 
 func _ready():
@@ -15,7 +16,7 @@ func _ready():
 
 func GetInventoryItem() -> InventoryItem:
 	### override this in children to assign values to t
-	return InventoryItem.new(itemName, inventoryTexture, type, stackable, stackSize, quantity, {}, null)
+	return InventoryItem.new(itemName, inventoryTexture, type, stackable, stackSize, quantity, {}, price, null)
 
 #func UpdateInventoryItemValue(key: String, value):
 #	inventoryItem.values[key] = value
@@ -29,5 +30,6 @@ func GetInformation():
 	var info = []
 	info.append("Name: " + itemName)
 	info.append("Type: " + ItemDatabase.GetTypeAsString(type))
+	info.append("Price: " + str(price))
 	info.append("Description: " + description)
 	return info

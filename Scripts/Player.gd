@@ -22,6 +22,7 @@ var moveCursor
 var initialized = false
 # from 0 to 1. Shows how much of a thrust must be used. Used by SetExaust(), CalculateVelocity()
 var accelerationCoef: float
+var money: int = 20
 
 func _ready():
 	Initialize()

@@ -11,9 +11,10 @@ var stackable: bool
 var stackSize: int
 var quantity: float
 var values = {}   # for conserving value of shieldGenerator energy, etc
+var price: int
 var slot
 
-func _init(_itemName:String, _iconTexture: Texture, _type, _stackable: bool, _stackSize: int, _quantity: int, _values: Dictionary, _slot):
+func _init(_itemName:String, _iconTexture: Texture, _type, _stackable: bool, _stackSize: int, _quantity: int, _values: Dictionary, _price: int, _slot):
 	itemName = _itemName
 	iconTexture = _iconTexture
 	type = _type
@@ -21,6 +22,7 @@ func _init(_itemName:String, _iconTexture: Texture, _type, _stackable: bool, _st
 	stackSize = _stackSize
 	quantity = _quantity
 	values = _values
+	price = _price
 	slot = _slot
 	icon = CreateIcon(iconTexture)
 

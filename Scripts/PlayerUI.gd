@@ -96,4 +96,3 @@ func _on_AttackModeButton_toggled(button_pressed):
 	yield(Tools.CreateTimer(0.1, self), "timeout")
 	_err = tween.interpolate_property(attackModeButton, "rect_scale", Vector2(1.2, 1.2), Vector2(1.0, 1.0), 0.1)
 	_err = tween.start()
-

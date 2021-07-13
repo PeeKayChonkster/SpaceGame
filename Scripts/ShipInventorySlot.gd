@@ -1,13 +1,15 @@
-extends InventorySlot
+extends SlotUI
 
 export(ItemDatabase.ITEM_TYPE) var type
 
 var shipSlotNode   ### node on the ship
 
 func _ready():
-	_onReady()
+	Initialize()
 
-func _onReady():
+func Initialize():
+	.Initialize()
+	while(!inventory): yield(get_tree(), "idle_frame")
 	inventory.shipSlots.append(self)
 
 func _LinkWithShip(slot):
@@ -32,19 +34,19 @@ func RemoveItem():
 	shipSlotNode.Update()
 	.RemoveItem()
 
-func get_drag_data(_position):
-	if(item):
-		var newControl = Control.new()
-		var newIcon = item.icon.duplicate()
-		newIcon.get_node("NameLabel").show()
-		newControl.add_child(newIcon)
-		newIcon.rect_position += -0.5 * newIcon.rect_size
-		set_drag_preview(newControl)
-		var sendItem = shipSlotNode.item.GetInventoryItem()
-		RemoveItem()
-		return sendItem
-	else:
-		return null
+#func get_drag_data(_position):
+#	if(item):
+#		var newControl = Control.new()
+#		var newIcon = item.icon.duplicate()
+#		newIcon.get_node("NameLabel").show()
+#		newControl.add_child(newIcon)
+#		newIcon.rect_position += -0.5 * newIcon.rect_size
+#		set_drag_preview(newControl)
+#		var sendItem = shipSlotNode.item.GetInventoryItem()
+#		RemoveItem()
+#		return sendItem
+#	else:
+#		return null
 
 func drop_data(position, data):
 	if(data.type == type):

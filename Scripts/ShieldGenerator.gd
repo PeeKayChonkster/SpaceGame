@@ -66,6 +66,16 @@ func GetValuesFromInventoryItem(item : InventoryItem):
 		### TakeDamage called instead of simple assignment, so that recharge will begin
 		var _temp = TakeDamage(maxEnergy - item.values.energy)
 
+func GetInformation():
+	var info = .GetInformation()
+	# remove description
+	var _bul = info.pop_back()
+	info.append("Max Energy: " + str(maxEnergy))
+	info.append("Time Before Recharge: " + str(timeBeforeRecharge))
+	info.append("Charge Speed: " + str(chargeSpeed))
+	info.append("Description: " + description)
+	return info
+
 func _BlockTimeout():
 	blocked = false
 	Recharge()

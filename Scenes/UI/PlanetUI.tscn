@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Textures/UI/Minimap/Minimap_Frame.png" type="Texture" id=1]
 [ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/PlanetUI.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI/InventorySlot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Shop.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -11,12 +13,12 @@ outline_color = Color( 0.027451, 0.0235294, 0.168627, 1 )
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 20
-font_data = ExtResource( 2 )
-
 [sub_resource type="DynamicFont" id=3]
 size = 27
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -79,6 +81,23 @@ custom_constants/margin_top = 76
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
+[node name="PlanetName" type="Control" parent="NinePatchRect/TabContainer/News/MarginContainer"]
+margin_left = 5.0
+margin_top = 76.0
+margin_right = 976.0
+margin_bottom = 497.0
+
+[node name="NameLabel" type="Label" parent="NinePatchRect/TabContainer/News/MarginContainer/PlanetName"]
+margin_top = -57.7335
+margin_right = 971.0
+margin_bottom = -20.7335
+custom_fonts/font = SubResource( 3 )
+text = "Planet name"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="NewsTextLabel" type="RichTextLabel" parent="NinePatchRect/TabContainer/News/MarginContainer"]
 margin_left = 5.0
 margin_top = 76.0
@@ -101,20 +120,316 @@ margin_left = 4.0
 margin_top = 59.0
 margin_right = -4.0
 margin_bottom = -4.0
+script = ExtResource( 5 )
+inventorySlotsContainerPath = NodePath("Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer")
 
-[node name="NameLabel" type="Label" parent="NinePatchRect"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -89.2964
-margin_top = 85.1805
-margin_right = 73.7036
-margin_bottom = 122.181
-custom_fonts/font = SubResource( 3 )
-text = "Planet name"
-align = 1
+[node name="Inventory" type="Panel" parent="NinePatchRect/TabContainer/Shop"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 988.0
+margin_bottom = 509.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/TabContainer/Shop/Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 961.0
+margin_bottom = 482.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer"]
+margin_right = 941.0
+margin_bottom = 462.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer"]
+margin_left = 16.0
+margin_top = 5.0
+margin_right = 924.0
+margin_bottom = 457.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 4
+custom_constants/hseparation = 4
+columns = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventorySlot" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 110.0
+margin_bottom = 110.0
+
+[node name="InventorySlot2" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_right = 224.0
+margin_bottom = 110.0
+
+[node name="InventorySlot3" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_right = 338.0
+margin_bottom = 110.0
+
+[node name="InventorySlot4" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_right = 452.0
+margin_bottom = 110.0
+
+[node name="InventorySlot5" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 456.0
+margin_right = 566.0
+margin_bottom = 110.0
+
+[node name="InventorySlot6" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 570.0
+margin_right = 680.0
+margin_bottom = 110.0
+
+[node name="InventorySlot7" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 684.0
+margin_right = 794.0
+margin_bottom = 110.0
+
+[node name="InventorySlot8" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 798.0
+margin_right = 908.0
+margin_bottom = 110.0
+
+[node name="InventorySlot9" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 114.0
+margin_right = 110.0
+margin_bottom = 224.0
+
+[node name="InventorySlot10" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 114.0
+margin_right = 224.0
+margin_bottom = 224.0
+
+[node name="InventorySlot11" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 114.0
+margin_right = 338.0
+margin_bottom = 224.0
+
+[node name="InventorySlot12" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 114.0
+margin_right = 452.0
+margin_bottom = 224.0
+
+[node name="InventorySlot13" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 456.0
+margin_top = 114.0
+margin_right = 566.0
+margin_bottom = 224.0
+
+[node name="InventorySlot14" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 570.0
+margin_top = 114.0
+margin_right = 680.0
+margin_bottom = 224.0
+
+[node name="InventorySlot15" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 684.0
+margin_top = 114.0
+margin_right = 794.0
+margin_bottom = 224.0
+
+[node name="InventorySlot16" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 798.0
+margin_top = 114.0
+margin_right = 908.0
+margin_bottom = 224.0
+
+[node name="InventorySlot17" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 228.0
+margin_right = 110.0
+margin_bottom = 338.0
+
+[node name="InventorySlot18" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 228.0
+margin_right = 224.0
+margin_bottom = 338.0
+
+[node name="InventorySlot19" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 228.0
+margin_right = 338.0
+margin_bottom = 338.0
+
+[node name="InventorySlot20" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 228.0
+margin_right = 452.0
+margin_bottom = 338.0
+
+[node name="InventorySlot21" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 456.0
+margin_top = 228.0
+margin_right = 566.0
+margin_bottom = 338.0
+
+[node name="InventorySlot22" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 570.0
+margin_top = 228.0
+margin_right = 680.0
+margin_bottom = 338.0
+
+[node name="InventorySlot23" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 684.0
+margin_top = 228.0
+margin_right = 794.0
+margin_bottom = 338.0
+
+[node name="InventorySlot24" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 798.0
+margin_top = 228.0
+margin_right = 908.0
+margin_bottom = 338.0
+
+[node name="InventorySlot25" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 342.0
+margin_right = 110.0
+margin_bottom = 452.0
+
+[node name="InventorySlot26" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_top = 342.0
+margin_right = 224.0
+margin_bottom = 452.0
+
+[node name="InventorySlot27" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 342.0
+margin_right = 338.0
+margin_bottom = 452.0
+
+[node name="InventorySlot28" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 342.0
+margin_right = 452.0
+margin_bottom = 452.0
+
+[node name="InventorySlot29" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 456.0
+margin_top = 342.0
+margin_right = 566.0
+margin_bottom = 452.0
+
+[node name="InventorySlot30" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 570.0
+margin_top = 342.0
+margin_right = 680.0
+margin_bottom = 452.0
+
+[node name="InventorySlot31" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 684.0
+margin_top = 342.0
+margin_right = 794.0
+margin_bottom = 452.0
+
+[node name="InventorySlot32" parent="NinePatchRect/TabContainer/Shop/Inventory/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 798.0
+margin_top = 342.0
+margin_right = 908.0
+margin_bottom = 452.0
+
+[node name="Inventory" type="PanelContainer" parent="NinePatchRect/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 59.0
+margin_right = -4.0
+margin_bottom = -4.0
 
 [node name="TakeoffButton" type="Button" parent="NinePatchRect"]
 anchor_left = 1.0

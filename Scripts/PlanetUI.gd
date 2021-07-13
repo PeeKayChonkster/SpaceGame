@@ -1,8 +1,8 @@
 extends Panel
 
-onready var nameLabel = $NinePatchRect/NameLabel
+onready var nameLabel = find_node("NameLabel")
 onready var http = $HTTPRequest
-onready var newsTextLabel = $NinePatchRect/TabContainer/News/MarginContainer/NewsTextLabel
+onready var newsTextLabel = find_node("NewsTextLabel")
 
 var planet
 
@@ -15,7 +15,7 @@ func _ready():
 
 func Activate():
 	planet.remove_child(self)
-	GameController.ui.add_child(self)
+	GameController.ui.add_child_below_node(GameController.ui.inventoryUI, self)
 	GetNews()
 	show()
 
