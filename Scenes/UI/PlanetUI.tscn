@@ -65,7 +65,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="News" type="PanelContainer" parent="NinePatchRect/TabContainer"]
+[node name="Hangar" type="PanelContainer" parent="NinePatchRect/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -73,7 +73,7 @@ margin_top = 59.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/TabContainer/News"]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/TabContainer/Hangar"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1009.0
@@ -83,13 +83,13 @@ custom_constants/margin_top = 76
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="PlanetName" type="Control" parent="NinePatchRect/TabContainer/News/MarginContainer"]
+[node name="PlanetName" type="Control" parent="NinePatchRect/TabContainer/Hangar/MarginContainer"]
 margin_left = 5.0
 margin_top = 76.0
 margin_right = 997.0
 margin_bottom = 518.0
 
-[node name="NameLabel" type="Label" parent="NinePatchRect/TabContainer/News/MarginContainer/PlanetName"]
+[node name="NameLabel" type="Label" parent="NinePatchRect/TabContainer/Hangar/MarginContainer/PlanetName"]
 margin_top = -57.7335
 margin_right = 971.0
 margin_bottom = -20.7335
@@ -100,7 +100,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewsTextLabel" type="RichTextLabel" parent="NinePatchRect/TabContainer/News/MarginContainer"]
+[node name="NewsTextLabel" type="RichTextLabel" parent="NinePatchRect/TabContainer/Hangar/MarginContainer"]
 margin_left = 5.0
 margin_top = 76.0
 margin_right = 997.0
@@ -114,14 +114,14 @@ custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 2 )
 text = "Loading..."
 
-[node name="Control" type="Control" parent="NinePatchRect/TabContainer/News"]
+[node name="Control" type="Control" parent="NinePatchRect/TabContainer/Hangar"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1009.0
 margin_bottom = 530.0
 mouse_filter = 2
 
-[node name="TakeoffButton" type="Button" parent="NinePatchRect/TabContainer/News/Control"]
+[node name="TakeoffButton" type="Button" parent="NinePatchRect/TabContainer/Hangar/Control"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -395,5 +395,5 @@ pause_mode = 2
 use_threads = true
 
 [connection signal="tab_changed" from="NinePatchRect/TabContainer" to="." method="_on_TabContainer_tab_changed"]
-[connection signal="button_up" from="NinePatchRect/TabContainer/News/Control/TakeoffButton" to="." method="_on_TakeoffButton_button_up"]
+[connection signal="button_up" from="NinePatchRect/TabContainer/Hangar/Control/TakeoffButton" to="." method="_on_TakeoffButton_button_up"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

@@ -3,10 +3,11 @@ class_name Inventory
 
 export (NodePath) var inventorySlotsContainerPath
 
+onready var moneyLabel = find_node("MoneyLabel")
 
 var inventorySlotsContainer: GridContainer
 var inventorySlots = []
-
+var money: int = 20 setget set_money
 
 func _ready():
 	Initialize()
@@ -22,13 +23,17 @@ func AddItem(item: InventoryItem) -> bool:
 		if(slot.Empty()):
 			if(item.slot && item.slot.type != slot.type):
 				print("Transaction")
+				slot.MakeTransaction() ###<----------------------------
 			slot.Put(item)
 			return true
 	return false
 
-func ShowPriceTags(value):
+func ShowPricetags(value):
 	for s in inventorySlots:
 		s.ShowPricetag(value)
+
+func RefreshPricetags():
+	ShowPricetags(true)
 
 func ClearAll():
 	for s in inventorySlots:
@@ -40,10 +45,16 @@ func Initialize():
 	for s in inventorySlots:
 		s.inventory = self
 		s.type = GameController.SLOT_INVENTORY
-	Deactivate()
+	moneyLabel.text = str(money)
 
 func can_drop_data(_position, data):
 	return (data.slot != null)
 
 func drop_data(_position, data):
 	data.slot.Put(data)
+
+### setters/getters ###
+func set_money(value):
+	money = value
+	moneyLabel.text = str(value)
+######

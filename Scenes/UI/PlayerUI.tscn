@@ -225,6 +225,7 @@ margin_right = -14.3937
 margin_bottom = -256.922
 rect_min_size = Vector2( 70, 70 )
 rect_pivot_offset = Vector2( 35, 35 )
+focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 toggle_mode = true

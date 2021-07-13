@@ -8,7 +8,6 @@ onready var shipInventorySlotPrefab = preload("res://Scenes/UI/ShipInventorySlot
 onready var shieldBar = find_node("ShieldBar")
 onready var hullBar = find_node("HullBar")
 onready var fuelBar = find_node("FuelBar")
-onready var moneyLabel = find_node("MoneyLabel")
 onready var inventoryPanel = find_node("Inventory")
 
 
@@ -21,11 +20,11 @@ func _ready():
 	_err = AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
 	_err = AddItem(ItemDatabase.GetInventoryItem("TargetSystem"))
 	_err = AddItem(ItemDatabase.GetInventoryItem("Fuel"))
+	ShowPricetags(true)
 	Deactivate()
 
 func Activate():
 	UpdateBars(ship)
-	moneyLabel.text = str(GameController.player.money)
 	show()
 
 func Deactivate():
@@ -52,7 +51,6 @@ func ResetShipUI():
 	for slot in shipSlots:
 		slot.queue_free()
 	ship = null
-
 
 func UpdateBars(ship):
 	hullBar.value = ship.hullIntegrity
