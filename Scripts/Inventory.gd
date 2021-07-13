@@ -9,11 +9,7 @@ var inventorySlots = []
 
 
 func _ready():
-	inventorySlotsContainer = get_node(inventorySlotsContainerPath)
-	inventorySlots = inventorySlotsContainer.get_children()
-	for s in inventorySlots:
-		s.inventory = self
-	Deactivate()
+	Initialize()
 
 func Activate():
 	show()
@@ -24,14 +20,27 @@ func Deactivate():
 func AddItem(item: InventoryItem) -> bool:
 	for slot in inventorySlots:
 		if(slot.Empty()):
+			if(item.slot && item.slot.type != slot.type):
+				print("Transaction")
 			slot.Put(item)
 			return true
 	return false
 
 func ShowPriceTags(value):
-	if(value != null):
-		for s in inventorySlots:
-			s.ShowPricetag(value)
+	for s in inventorySlots:
+		s.ShowPricetag(value)
+
+func ClearAll():
+	for s in inventorySlots:
+		s.RemoveItem()
+
+func Initialize():
+	inventorySlotsContainer = get_node(inventorySlotsContainerPath)
+	inventorySlots = inventorySlotsContainer.get_children()
+	for s in inventorySlots:
+		s.inventory = self
+		s.type = GameController.SLOT_INVENTORY
+	Deactivate()
 
 func can_drop_data(_position, data):
 	return (data.slot != null)

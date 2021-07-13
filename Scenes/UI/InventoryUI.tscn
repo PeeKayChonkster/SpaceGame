@@ -67,7 +67,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-inventorySlotsContainerPath = NodePath("HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer")
+inventorySlotsContainerPath = NodePath("HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -239,6 +239,7 @@ size_flags_vertical = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+split_offset = 260
 dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -246,31 +247,37 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Inventory/VSplitContainer"]
 margin_right = 507.0
-margin_bottom = 492.0
+margin_bottom = 544.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+custom_constants/margin_right = 10
+custom_constants/margin_top = 0
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer"]
+margin_left = 10.0
+margin_right = 497.0
+margin_bottom = 544.0
+mouse_filter = 2
+scroll_horizontal_enabled = false
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer"]
 margin_right = 487.0
-margin_bottom = 472.0
+margin_bottom = 544.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer"]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer"]
 margin_left = 7.0
-margin_right = 459.0
-margin_bottom = 452.0
+margin_top = 36.0
+margin_right = 479.0
+margin_bottom = 508.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -281,156 +288,154 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InventorySlot" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 110.0
-margin_bottom = 110.0
+margin_right = 115.0
+margin_bottom = 115.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
 
-[node name="InventorySlot2" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot2" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 114.0
-margin_right = 224.0
-margin_bottom = 110.0
+margin_left = 119.0
+margin_right = 234.0
+margin_bottom = 115.0
 
-[node name="InventorySlot3" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot3" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 228.0
-margin_right = 338.0
-margin_bottom = 110.0
+margin_left = 238.0
+margin_right = 353.0
+margin_bottom = 115.0
 
-[node name="InventorySlot4" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot4" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 342.0
-margin_right = 452.0
-margin_bottom = 110.0
+margin_left = 357.0
+margin_right = 472.0
+margin_bottom = 115.0
 
-[node name="InventorySlot5" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot5" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 114.0
-margin_right = 110.0
-margin_bottom = 224.0
+margin_top = 119.0
+margin_right = 115.0
+margin_bottom = 234.0
 
-[node name="InventorySlot6" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot6" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 114.0
-margin_top = 114.0
-margin_right = 224.0
-margin_bottom = 224.0
+margin_left = 119.0
+margin_top = 119.0
+margin_right = 234.0
+margin_bottom = 234.0
 
-[node name="InventorySlot7" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot7" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 228.0
-margin_top = 114.0
-margin_right = 338.0
-margin_bottom = 224.0
+margin_left = 238.0
+margin_top = 119.0
+margin_right = 353.0
+margin_bottom = 234.0
 
-[node name="InventorySlot8" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot8" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 342.0
-margin_top = 114.0
-margin_right = 452.0
-margin_bottom = 224.0
+margin_left = 357.0
+margin_top = 119.0
+margin_right = 472.0
+margin_bottom = 234.0
 
-[node name="InventorySlot9" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot9" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 228.0
-margin_right = 110.0
-margin_bottom = 338.0
+margin_top = 238.0
+margin_right = 115.0
+margin_bottom = 353.0
 
-[node name="InventorySlot10" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot10" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 114.0
-margin_top = 228.0
-margin_right = 224.0
-margin_bottom = 338.0
+margin_left = 119.0
+margin_top = 238.0
+margin_right = 234.0
+margin_bottom = 353.0
 
-[node name="InventorySlot11" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot11" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 228.0
-margin_top = 228.0
-margin_right = 338.0
-margin_bottom = 338.0
+margin_left = 238.0
+margin_top = 238.0
+margin_right = 353.0
+margin_bottom = 353.0
 
-[node name="InventorySlot12" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot12" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 342.0
-margin_top = 228.0
-margin_right = 452.0
-margin_bottom = 338.0
+margin_left = 357.0
+margin_top = 238.0
+margin_right = 472.0
+margin_bottom = 353.0
 
-[node name="InventorySlot13" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot13" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 342.0
-margin_right = 110.0
-margin_bottom = 452.0
+margin_top = 357.0
+margin_right = 115.0
+margin_bottom = 472.0
 
-[node name="InventorySlot14" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot14" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 114.0
-margin_top = 342.0
-margin_right = 224.0
-margin_bottom = 452.0
+margin_left = 119.0
+margin_top = 357.0
+margin_right = 234.0
+margin_bottom = 472.0
 
-[node name="InventorySlot15" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot15" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 228.0
-margin_top = 342.0
-margin_right = 338.0
-margin_bottom = 452.0
+margin_left = 238.0
+margin_top = 357.0
+margin_right = 353.0
+margin_bottom = 472.0
 
-[node name="InventorySlot16" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="InventorySlot16" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 342.0
-margin_top = 342.0
-margin_right = 452.0
-margin_bottom = 452.0
+margin_left = 357.0
+margin_top = 357.0
+margin_right = 472.0
+margin_bottom = 472.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Inventory/VSplitContainer"]
-margin_top = 504.0
+margin_top = 556.0
 margin_right = 507.0
 margin_bottom = 600.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 40
-custom_constants/margin_top = 10
+custom_constants/margin_top = 0
 custom_constants/margin_left = 40
-custom_constants/margin_bottom = 20
+custom_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSplitContainer" type="HSplitContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer2"]
+[node name="HSplitContainer" type="HSplitContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer2"]
 margin_left = 40.0
-margin_top = 10.0
 margin_right = 467.0
-margin_bottom = 76.0
+margin_bottom = 34.0
 mouse_filter = 2
 split_offset = -30
 dragger_visibility = 1
 
-[node name="MoneyLabel" type="Label" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer2/VSplitContainer"]
-margin_top = 16.0
+[node name="MoneyLabel" type="Label" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer2/HSplitContainer"]
 margin_right = 385.0
-margin_bottom = 50.0
+margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 9 )
@@ -440,10 +445,10 @@ valign = 1
 clip_text = true
 max_lines_visible = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer2/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer2/HSplitContainer"]
 margin_left = 397.0
 margin_right = 427.0
-margin_bottom = 66.0
+margin_bottom = 34.0
 mouse_filter = 2
 texture = ExtResource( 6 )
 expand = true
@@ -464,19 +469,19 @@ __meta__ = {
 
 [connection signal="button_up" from="CloseButton" to="." method="_on_CloseButton_button_up"]
 
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot2"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot3"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot4"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot5"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot6"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot7"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot8"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot9"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot10"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot11"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot12"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot13"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot14"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot15"]
-[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/CenterContainer/GridContainer/InventorySlot16"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot2"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot3"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot4"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot5"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot6"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot7"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot8"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot9"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot10"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot11"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot12"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot13"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot14"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot15"]
+[editable path="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer/GridContainer/InventorySlot16"]

@@ -9,6 +9,7 @@ onready var ship = get_parent().get_parent()
 
 var camera
 var controller
+var inventory
 var moveTarget = null
 var velocity = Vector2(0.0, 0.0)
 var destReticle
@@ -200,13 +201,12 @@ func Initialize():
 	controller = get_node("PlayerController")
 	ResetTargets(true)
 	
-	#### TEST ####
 	while(!GameController.initialized): yield(get_tree(), "idle_frame")
 	moveCursor = GameController.ui.moveCursor
 	moveCursor.get_parent().visible = (controller.controllMode == 1)
 	GameController.ui.SetShipUI(ship)
+	inventory = GameController.ui.inventoryUI
 	initialized = true
-	##############
 
 func _OnTargetDeath():
 	RemoveAttackTarget()

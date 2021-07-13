@@ -3,6 +3,7 @@ extends Node
 ### All enums
 enum { UPDATE_HULL = 1, UPDATE_SHIELD = 2, UPDATE_FUEL = 4 }
 enum { SHIPMODE_IDLE, SHIPMODE_ATTACK, SHIPMODE_DEAD }
+enum { SLOT_INVENTORY, SLOT_SHOP }
 ###
 
 var player

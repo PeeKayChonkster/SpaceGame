@@ -3,6 +3,8 @@ extends Panel
 onready var nameLabel = find_node("NameLabel")
 onready var http = $HTTPRequest
 onready var newsTextLabel = find_node("NewsTextLabel")
+onready var shop = find_node("Shop")
+onready var tabContainer = find_node("TabContainer")
 
 var planet
 
@@ -48,3 +50,10 @@ func _on_HTTPRequest_request_completed(result, response_code, _headers, body: Po
 			newsTextLabel.text += " " + line
 	else:
 		newsTextLabel.text = "Check internet connection"
+
+
+func _on_TabContainer_tab_changed(tab):
+	if(tab == 1):
+		shop.Activate()
+	else:
+		shop.Deactivate()

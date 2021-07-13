@@ -11,6 +11,7 @@ inventoryTexture = ExtResource( 3 )
 description = "Cheapest target system you can find on a market. It is slow as a pregnant cow, but still gives you some superiority against old time guns without target systems.
 gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
 type = 1
+price = 150
 workSpeedMultiplier = 1.0
 
 [node name="TargetSystemReticle" parent="." instance=ExtResource( 1 )]

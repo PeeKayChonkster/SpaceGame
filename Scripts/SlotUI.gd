@@ -23,6 +23,7 @@ func Put(newItem: InventoryItem):
 		RemoveItem()
 		newItem.slot.Put(oldItem)
 	item = newItem
+	if (item.icon.get_parent()): item.icon.get_parent().remove_child(item.icon)
 	container.add_child(item.icon)
 	if(item.stackable): item.icon.get_node("QuantityLabel").show()
 	else:  item.icon.get_node("QuantityLabel").hide()
@@ -32,8 +33,14 @@ func Put(newItem: InventoryItem):
 # virtual function for derivatives of this class. Deletes item, 
 # corresponding to InventoryItem, from SceneTree()
 func RemoveItem():
-	container.remove_child(item.icon)
-	item = null
+	if (item):
+		container.remove_child(item.icon)
+		item = null
+
+func DestroyItem():
+	if (item):
+		item.icon.queue_free()
+		item = null
 
 func Empty():
 	return (item == null)

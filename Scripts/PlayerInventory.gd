@@ -9,6 +9,7 @@ onready var shieldBar = find_node("ShieldBar")
 onready var hullBar = find_node("HullBar")
 onready var fuelBar = find_node("FuelBar")
 onready var moneyLabel = find_node("MoneyLabel")
+onready var inventoryPanel = find_node("Inventory")
 
 
 var ship
@@ -16,10 +17,10 @@ var shipSlots = []
 
 func _ready():
 	while(ItemDatabase.items.empty()): yield(get_tree(), "idle_frame")
-	AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
-	AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
-	AddItem(ItemDatabase.GetInventoryItem("TargetSystem"))
-	AddItem(ItemDatabase.GetInventoryItem("Fuel"))
+	var _err = AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
+	_err = AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
+	_err = AddItem(ItemDatabase.GetInventoryItem("TargetSystem"))
+	_err = AddItem(ItemDatabase.GetInventoryItem("Fuel"))
 	Deactivate()
 
 func Activate():
@@ -52,11 +53,6 @@ func ResetShipUI():
 		slot.queue_free()
 	ship = null
 
-func AddItem(item: InventoryItem):
-	for slot in inventorySlots:
-		if(slot.Empty()):
-			slot.Put(item)
-			return
 
 func UpdateBars(ship):
 	hullBar.value = ship.hullIntegrity
