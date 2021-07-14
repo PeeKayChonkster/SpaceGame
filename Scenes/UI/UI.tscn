@@ -22,6 +22,7 @@ light_mode = 1
 
 [node name="UI" type="CanvasLayer"]
 pause_mode = 2
+layer = 2
 script = ExtResource( 7 )
 DebugUI = true
 

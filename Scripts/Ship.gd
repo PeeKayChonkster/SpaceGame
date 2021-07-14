@@ -140,6 +140,8 @@ func Explode():
 	emit_signal("death")
 	collisionPolygon.set_deferred("disabled", true)
 	yield(Tools.CreateTimer(1.0, self), "timeout")
+	EffectsManager.Flash()
+	EffectsManager.ShakeCamera()
 	var newExplosion = shipExplosionPefab.instance()
 	GameController.world.add_child(newExplosion)
 	newExplosion.global_position = global_position

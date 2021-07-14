@@ -110,6 +110,7 @@ DebugWindow="*res://Scenes/Debug/DebugWindow.tscn"
 MapManager="*res://Scenes/MapManager.tscn"
 Tools="*res://Scripts/Tools.gd"
 MaterialsLoader="*res://Scripts/MaterialsLoader.gd"
+EffectsManager="*res://Scenes/EffectsManager.tscn"
 
 [display]
 

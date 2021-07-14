@@ -7,7 +7,7 @@ onready var container = $MarginContainer
 
 var inventory
 
-var visiblePricetag = false
+var visiblePricetag = true
 
 var item: InventoryItem = null
 
@@ -50,7 +50,6 @@ func ShowPricetag(value: bool):
 	if(item): 
 		var pricetag = item.icon.find_node("Pricetag")
 		pricetag.visible = value
-		pricetag.get_node("PricetagLabel").text = str(item.price)
 
 func get_drag_data(_position):
 	if(item):

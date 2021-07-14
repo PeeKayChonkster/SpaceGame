@@ -20,7 +20,6 @@ func _ready():
 	_err = AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
 	_err = AddItem(ItemDatabase.GetInventoryItem("TargetSystem"))
 	_err = AddItem(ItemDatabase.GetInventoryItem("Fuel"))
-	ShowPricetags(true)
 	Deactivate()
 
 func Activate():
@@ -29,6 +28,10 @@ func Activate():
 
 func Deactivate():
 	hide()
+
+func AddItem(item: InventoryItem):
+	if(!.AddItem(item)):
+		item.slot.Put(item)
 
 func SetShipUI(_ship: Ship):
 	ship = _ship

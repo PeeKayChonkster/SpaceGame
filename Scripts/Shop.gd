@@ -22,7 +22,6 @@ func Activate():
 		for s in GameController.ui.inventoryUI.inventorySlots:
 			if(s.item):
 				ChangeItemPrice(s.item, true)
-		GameController.ui.inventoryUI.RefreshPricetags()
 		activated = true
 
 func Deactivate():
@@ -32,7 +31,7 @@ func Deactivate():
 		for s in GameController.ui.inventoryUI.inventorySlots:
 			if(s.item):
 				s.item.price = ItemDatabase.GetInventoryItem(s.item.itemName).price
-		GameController.ui.inventoryUI.RefreshPricetags()
+		TrimRows()
 		activated = false
 
 func ChangeItemPrice(item: InventoryItem, sellingPrice: bool):
@@ -49,16 +48,25 @@ func RefreshShopPrices():
 	for s in GameController.ui.inventoryUI.inventorySlots:
 		if(s.item):
 			ChangeItemPrice(s.item, true)
-	GameController.ui.inventoryUI.RefreshPricetags()
 	
 	for s in inventorySlots:
 		if(s.item):
 			ChangeItemPrice(s.item, false)
-	RefreshPricetags()
+
+func AddItem(item:InventoryItem) -> bool:
+	if (!.AddItem(item)):
+		AddRow()
+		AddItem(item)
+	return true
 
 func Initialize():
+	while(ItemDatabase.items.empty()): yield(get_tree(), "idle_frame")
 	.Initialize()
 	money = 200
+	var quantity = GameController.rng.randi_range(1, 20)
+	for _i in range(quantity):
+		AddItem(ItemDatabase.GetRandomInventoryItem())
 	for s in inventorySlots:
 		s.type = GameController.SLOT_SHOP
 		s.ShowPricetag(true)
+	RefreshShopPrices()

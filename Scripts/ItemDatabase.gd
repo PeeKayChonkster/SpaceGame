@@ -75,6 +75,20 @@ func GetInventoryItem(itemName: String):
 	item.queue_free()
 	return invItem
 
+func GetRandomItem():
+	var index = GameController.rng.randi_range(0, items.size() - 1)
+	var item = items[items.keys()[index]]
+	item = item.instance()
+	return item
+
+func GetRandomInventoryItem():
+	var item = GetRandomItem()
+	if(item == null): return
+	var invItem = item.GetInventoryItem()
+	item.queue_free()
+	return invItem
+
+
 func GetShip(shipName: String):
 	return (ships.get(shipName))
 

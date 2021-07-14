@@ -19,12 +19,23 @@ func MakeTransaction(item):
 	if(item.price > inventory.money):  ### not enough money
 		item.slot.Put(item)
 	else:
-		inventory.money -= item.price
-		item.slot.inventory.money += item.price
 		var oldItemSlot = item.slot
-		.Put(item)
 		
-		# find out which inventory(receiving or sending) is shop
+		### decide on where to put item
+		if(item):     ### slot is occupied
+			if(inventory.Full()):  ### return item if inventory is full
+				item.slot.Put(item)
+				return
+			else:
+				item.slot = self    ### add item to the first empty slot
+				inventory.AddItem(item)
+		else:
+			item.slot.Put(item)    ### slot is empty
+		
+		inventory.money -= item.price
+		oldItemSlot.inventory.money += item.price
+		
+		# find out which inventory(receiving or sending) is of class Shop
 		# and refresh prices
 		if(inventory is Shop): inventory.RefreshShopPrices()
 		else: oldItemSlot.inventory.RefreshShopPrices()

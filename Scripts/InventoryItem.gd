@@ -11,7 +11,7 @@ var stackable: bool
 var stackSize: int
 var quantity: float
 var values = {}   # for conserving value of shieldGenerator energy, etc
-var price: int
+var price: int setget set_price
 var slot
 
 func _init(_itemName:String, _iconTexture: Texture, _type, _stackable: bool, _stackSize: int, _quantity: int, _values: Dictionary, _price: int, _slot):
@@ -49,3 +49,7 @@ func Split(value: float) -> InventoryItem:
 	return item
 	pass
 	###
+
+func set_price(value):
+	price = value
+	icon.find_node("PricetagLabel").text = str(price)

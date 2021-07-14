@@ -14,11 +14,11 @@ outline_color = Color( 0.027451, 0.0235294, 0.168627, 1 )
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 27
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 20
 font_data = ExtResource( 2 )
 
@@ -66,6 +66,7 @@ __meta__ = {
 }
 
 [node name="Hangar" type="PanelContainer" parent="NinePatchRect/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -93,7 +94,7 @@ margin_bottom = 518.0
 margin_top = -57.7335
 margin_right = 971.0
 margin_bottom = -20.7335
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Planet name"
 align = 1
 __meta__ = {
@@ -107,11 +108,11 @@ margin_right = 997.0
 margin_bottom = 518.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/mono_font = SubResource( 2 )
-custom_fonts/bold_italics_font = SubResource( 2 )
-custom_fonts/italics_font = SubResource( 2 )
-custom_fonts/bold_font = SubResource( 2 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/mono_font = SubResource( 3 )
+custom_fonts/bold_italics_font = SubResource( 3 )
+custom_fonts/italics_font = SubResource( 3 )
+custom_fonts/bold_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 3 )
 text = "Loading..."
 
 [node name="Control" type="Control" parent="NinePatchRect/TabContainer/Hangar"]
@@ -137,7 +138,6 @@ __meta__ = {
 }
 
 [node name="Shop" type="MarginContainer" parent="NinePatchRect/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
