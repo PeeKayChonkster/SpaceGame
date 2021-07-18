@@ -169,7 +169,11 @@ func SpawnRandomStarSystem(coord: Vector2, entryStargate = null) -> StarSystem:
 		GameController.player.Move(newStargatePosition)
 	
 	# create newSystem stargates
-	var angle = GameController.rng.randf_range(0.0, 2.0 * PI)
+	var angle
+	if(entryStargate):
+		angle = entryStargate.global_position.angle() + PI
+	else:
+		angle = GameController.rng.randf_range(0.0, 2.0 * PI)
 	for _i in range(numberOfStargates):
 		var newStargate = SpawnRandomStargate((Vector2.DOWN * stargateOrbitRadius).rotated(angle), newStarSystem)
 		newStarSystem.stargates.append(newStargate)

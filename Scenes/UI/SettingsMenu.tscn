@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/SettingsMenu.gd" type="Script" id=2]
 [ext_resource path="res://src/Textures/UI/Buttons/CancelButton_idle.png" type="Texture" id=3]
 [ext_resource path="res://src/Textures/UI/Buttons/CancelButton_pressed.png" type="Texture" id=4]
+[ext_resource path="res://src/Textures/UI/Minimap/Mimimap_stargate.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -33,15 +34,16 @@ size_flags_vertical = 3
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/FogSettings"]
 margin_left = 293.0
-margin_top = 128.0
+margin_top = 124.0
 margin_right = 731.0
-margin_bottom = 169.0
+margin_bottom = 174.0
 custom_constants/separation = 30
 dragger_visibility = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/FogSettings/HSplitContainer"]
+margin_top = 4.0
 margin_right = 158.0
-margin_bottom = 41.0
+margin_bottom = 45.0
 custom_fonts/font = SubResource( 1 )
 text = "Fog quality"
 align = 1
@@ -53,10 +55,13 @@ __meta__ = {
 [node name="FogQualitySlider" type="HSlider" parent="VBoxContainer/FogSettings/HSplitContainer"]
 margin_left = 188.0
 margin_right = 438.0
-margin_bottom = 41.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
+custom_icons/grabber_disabled = ExtResource( 5 )
+custom_icons/grabber_highlight = ExtResource( 5 )
+custom_icons/grabber = ExtResource( 5 )
 max_value = 3.0
 value = 3.0
 rounded = true
