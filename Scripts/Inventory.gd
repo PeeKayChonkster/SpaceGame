@@ -63,7 +63,7 @@ func Sort():
 		if (inventorySlots[i].item):
 			var item = inventorySlots[i].item
 			inventorySlots[i].RemoveItem()
-			AddItem(item)
+			var _full = AddItem(item)
 
 func TrimRows():
 	Sort()
@@ -82,13 +82,6 @@ func Initialize():
 		s.type = GameController.SLOT_INVENTORY
 	moneyLabel.text = str(money)
 
-
-
-func can_drop_data(_position, data):
-	return (data.slot != null)
-
-func drop_data(_position, data):
-	data.slot.Put(data)
 
 ### setters/getters ###
 func set_money(value):

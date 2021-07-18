@@ -1,10 +1,10 @@
-extends Item
+extends Equipment
 
 
 onready var bullet = $Bullet
 onready var fireCone = $FireCone
 onready var fireConePolygon = $FireCone/CollisionPolygon2D
-onready var ship = get_parent().get_parent().get_parent()
+
 
 export(float) var firerate = 1.0
 export(float) var bulletSpeed = 1.0
@@ -27,17 +27,22 @@ var firing = false
 
 func _ready():
 	fireConeColor.a = fireConeAlpha
-	
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = firerate
-	ship.connect("death", self, "_OnShipDeath", [], CONNECT_ONESHOT)
+
+func Equip():
+	if(!equipped):
+		.Equip()
+		sprite.show()
+		ship.connect("death", self, "_OnShipDeath", [], CONNECT_ONESHOT)
 
 func _process(_delta):
-	if (ship.pilot is NPC):
-		Scan()
-	else:
-		WaitForFire()
+	if(equipped):
+		if (ship.pilot is NPC):
+			Scan()
+		else:
+			WaitForFire()
 
 func Scan():
 	if(target && working):

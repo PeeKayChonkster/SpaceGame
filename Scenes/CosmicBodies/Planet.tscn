@@ -34,6 +34,3 @@ shape = SubResource( 1 )
 
 [node name="PlanetUI" parent="." instance=ExtResource( 5 )]
 visible = false
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

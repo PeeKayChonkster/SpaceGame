@@ -185,29 +185,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Buttons" type="VBoxContainer" parent="."]
-margin_left = 25.4271
-margin_top = 22.2487
-margin_right = 149.427
-margin_bottom = 181.249
-custom_constants/separation = 21
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="InventoryButton" type="Button" parent="Buttons"]
-margin_right = 124.0
-margin_bottom = 39.0
+[node name="InventoryButton" type="Button" parent="."]
+margin_left = 25.0
+margin_top = 22.0
+margin_right = 191.0
+margin_bottom = 61.0
 custom_fonts/font = SubResource( 9 )
 text = "Inventory"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InteractButton" type="Button" parent="Buttons"]
-margin_top = 60.0
-margin_right = 124.0
-margin_bottom = 99.0
+[node name="InteractButton" type="Button" parent="."]
+margin_left = 25.0
+margin_top = 88.4308
+margin_right = 191.0
+margin_bottom = 127.431
+size_flags_horizontal = 9
+size_flags_vertical = 9
 custom_fonts/font = SubResource( 9 )
 text = "Interact"
 __meta__ = {
@@ -238,6 +233,6 @@ __meta__ = {
 }
 
 [connection signal="gui_input" from="MainPanel" to="." method="_on_Panel_gui_input"]
-[connection signal="button_up" from="Buttons/InventoryButton" to="." method="_on_InventoryButton_button_up"]
-[connection signal="button_up" from="Buttons/InteractButton" to="." method="_on_InteractButton_button_up"]
+[connection signal="button_up" from="InventoryButton" to="." method="_on_InventoryButton_button_up"]
+[connection signal="button_up" from="InteractButton" to="." method="_on_InteractButton_button_up"]
 [connection signal="toggled" from="AttackModeButton" to="." method="_on_AttackModeButton_toggled"]

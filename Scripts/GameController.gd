@@ -9,6 +9,7 @@ enum { SLOT_INVENTORY, SLOT_SHOP }
 var player
 var ui
 var world
+var clutter
 
 var useThreads: bool = true
 var doubleclickTime = 0.25
@@ -16,6 +17,8 @@ var clickTime = 0.0
 var doubleclick = false
 var initialized = false
 var screenSize
+var maxInteractVelocity = 100.0
+var itemDropChance = 3.0
 
 var maxMoveTargetDist = 600.0    # responsible for (speed / targetDistance) ratio
 var maxMoveCursorDist = 100.0    # responsible for (speed / CursorDistance) ratio
@@ -67,7 +70,8 @@ func StartGame():
 	
 	GameController.ui.ClearMinimap()
 	MapManager.ClearAllCosmicBodies()
-	MapManager.SpawnRandomStarSystem(Vector2.ZERO)
+	var newStarSystem = MapManager.SpawnRandomStarSystem(Vector2.ZERO)
+	MapManager.currentSystem = newStarSystem.GetInfo().id
 	
 	
 	GameController.ui.SetLoadingScreenPercent(50)
@@ -102,6 +106,8 @@ func ChangeSystem(stargate):
 	else: 
 		newStarSystem = MapManager.SpawnRandomStarSystem(Vector2.ZERO, stargate)
 	
+	MapManager.currentSystem = newStarSystem.GetInfo().id
+	
 	
 	# remove starsystem from the tree, so we can clear all old cosmicBodies
 	MapManager.cosmicBodies.remove_child(newStarSystem)
@@ -127,6 +133,7 @@ func Initialize():
 	world = null
 	ui = null
 	
+	get_tree().set_quit_on_go_back(false)
 	screenSize = OS.get_screen_size()
 	
 	while(!player):
@@ -143,6 +150,10 @@ func Initialize():
 		world = FindNodeOrNull("World", true)
 		yield(get_tree(), "idle_frame")
 	emit_signal("world_initialized", ui)
+	
+	while(!clutter):
+		clutter = FindNodeOrNull("Clutter", true)
+		yield(get_tree(), "idle_frame")
 	
 	initialized = true
 

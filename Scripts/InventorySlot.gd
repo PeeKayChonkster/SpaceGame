@@ -1,8 +1,6 @@
 extends SlotUI
 class_name InventorySlot
 
-var type
-
 func _ready():
 	Initialize()
 
@@ -23,9 +21,14 @@ func MakeTransaction(item):
 		
 		### decide on where to put item
 		if(item):     ### slot is occupied
-			if(inventory.Full()):  ### return item if inventory is full
-				item.slot.Put(item)
-				return
+			if(inventory.Full()):  ### return item if inventory is full, or add row if this is a shop
+				if(inventory is Shop):
+					inventory.AddRow();
+					item.slot = self
+					inventory.AddItem(item);
+				else:
+					item.slot.Put(item)
+					return
 			else:
 				item.slot = self    ### add item to the first empty slot
 				inventory.AddItem(item)

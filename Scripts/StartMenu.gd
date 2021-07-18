@@ -13,3 +13,7 @@ func _on_ExitButton_button_up():
 	if(GameController.initialized):
 		audioPlayer.stop()
 		GameController.ExitGame()
+
+
+func _on_SettingsButton_pressed():
+	GameController.ui.ActivateSettingsMenu()

@@ -6,6 +6,7 @@ onready var starSystemPrefab = preload("res://Scenes/CosmicBodies/StarSystem.tsc
 onready var stargatePrefab = preload("res://Scenes/CosmicBodies/Stargate.tscn")
 onready var thread = Thread.new()
 
+var proceduralSpaceBackground
 var cosmicBodies
 var ships
 var minNumberOfPlanets: int = 1
@@ -16,6 +17,7 @@ var minRadiusOfStars: float = 700.0
 var maxRadiusOfStars: float = 1200.0
 var minNumberOfStargates: int = 1
 var maxNumberOfStargates: int = 4
+var currentSystem: int
 var systemsInfo = []
 
 
@@ -36,9 +38,7 @@ var randomQueries = [
 
 
 func _ready():
-	while(!cosmicBodies):
-		cosmicBodies = GameController.FindNodeOrNull("CosmicBodies", true)
-		yield(get_tree(), "idle_frame")
+	Initialize()
 
 func SpawnPlanet(info, parent = cosmicBodies) -> Planet:
 	var newPlanet = planetPrefab.instance() as Planet
@@ -132,6 +132,9 @@ func SpawnStarSystem(stargate) -> StarSystem:
 	# give systemInfo to the new stargates after all system is generated (including new stargates)
 	for s in newStarSystem.stargates:
 		s.currentSystemID = newStarSystem.GetInfo().id
+	
+	proceduralSpaceBackground.GenerateFogColor(newStarSystem.GetInfo().id)
+	
 	return newStarSystem
 
 func SpawnRandomStarSystem(coord: Vector2, entryStargate = null) -> StarSystem:
@@ -185,6 +188,8 @@ func SpawnRandomStarSystem(coord: Vector2, entryStargate = null) -> StarSystem:
 		# set old stargate destinationSystemID
 		entryStargate.destinationSystemID = newStarSystem.GetInfo().id
 	
+	proceduralSpaceBackground.GenerateFogColor(newStarSystem.GetInfo().id)
+	
 	return newStarSystem
 
 func ClearAllCosmicBodies():
@@ -208,3 +213,8 @@ func ChangeStargateDestinationID(systemID: float, stargate, value):
 			break
 	if (!stargateInfo): printerr("Can't find stargate with the given id. Probably problem with stargate hashes.")
 	stargateInfo.set("destinationSystemID", value)
+
+func Initialize():
+	while(!GameController.initialized): yield(get_tree(), "idle_frame")
+	cosmicBodies = GameController.world.get_node("CosmicBodies")
+	proceduralSpaceBackground = GameController.world.get_node("ProceduralSpaceBackground")

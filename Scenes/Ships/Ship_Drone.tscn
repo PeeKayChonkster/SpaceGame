@@ -62,7 +62,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.1, 0.1 ) ]
 }
 
-[node name="ShipDrone" type="KinematicBody2D"]
+[node name="Ship_Drone" type="KinematicBody2D"]
 scale = Vector2( 0.1, 0.1 )
 collision_layer = 3
 collision_mask = 0
@@ -143,7 +143,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-type = 1
+itemType = 1
 
 [node name="EngineSlot" type="Node2D" parent="Slots"]
 position = Vector2( 0, 182.239 )
@@ -151,7 +151,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-type = 2
+itemType = 2
 
 [node name="TestEngine" parent="Slots/EngineSlot" instance=ExtResource( 6 )]
 
@@ -161,7 +161,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-type = 3
+itemType = 3
 
 [node name="TestShieldGenerator" parent="Slots/ShieldGeneratorSlot" instance=ExtResource( 5 )]
 

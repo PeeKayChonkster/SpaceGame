@@ -11,6 +11,8 @@ var visiblePricetag = true
 
 var item: InventoryItem = null
 
+var type
+
 func _ready():
 	Initialize()
 

@@ -1,14 +1,13 @@
-extends Item
+extends Equipment
 
 export(float) var maxEnergy
 export(float) var timeBeforeRecharge
 export(float) var chargeSpeed
 export(Color) var color
 
-onready var energy = maxEnergy #setget _set_energy
+onready var energy = maxEnergy #setget set_energy
 onready var blockTimer = Timer.new()
-onready var sprite = $Sprite
-onready var ship = get_parent().get_parent().get_parent()
+onready var fieldSprite = $FieldSprite
 onready var tween = Tween.new()
 
 var blocked = false
@@ -20,11 +19,11 @@ func _ready():
 	add_child(blockTimer)
 	add_child(tween)
 	blockTimer.connect("timeout", self, "_BlockTimeout")
-	sprite.modulate = color
-	sprite.modulate.a = 0.0
+	fieldSprite.modulate = color
+	fieldSprite.modulate.a = 0.0
 
 func Recharge():
-	while(!blocked && energy < maxEnergy):
+	while(equipped && !blocked && energy < maxEnergy):
 		var delta = get_process_delta_time()
 		self.energy += chargeSpeed * delta
 		ship.SpendFuel(chargeSpeed, 1, delta)
@@ -37,6 +36,7 @@ func TakeDamage(dmg: float) -> float:
 	self.energy -= dmg
 	blockTimer.start(timeBeforeRecharge)
 	var unblocked = 0.0 
+	ship.UpdateUIBars(GameController.UPDATE_SHIELD)
 	if(energy < 0.0):
 		unblocked = abs(energy)
 		energy = 0.0
@@ -47,10 +47,10 @@ func TakeDamage(dmg: float) -> float:
 func AnimateHit():
 	if(!animating):
 		animating = true
-		tween.interpolate_property(sprite, "modulate:a", 0.0, maxSpriteAlpha, 0.01, Tween.TRANS_LINEAR)
+		tween.interpolate_property(fieldSprite, "modulate:a", 0.0, maxSpriteAlpha, 0.01, Tween.TRANS_LINEAR)
 		tween.start()
 		yield(tween, "tween_completed")
-		tween.interpolate_property(sprite, "modulate:a", maxSpriteAlpha, 0.0, 0.3, Tween.TRANS_LINEAR, 2, 0.01)
+		tween.interpolate_property(fieldSprite, "modulate:a", maxSpriteAlpha, 0.0, 0.3, Tween.TRANS_LINEAR, 2, 0.01)
 		tween.start()
 		yield(tween, "tween_completed")
 		animating = false
@@ -81,8 +81,7 @@ func _BlockTimeout():
 	Recharge()
 
 ### setters/getters ###
-#func _set_energy(value):
-#	.UpdateInventoryItemValue("energy", value)
+#func set_energy(value):
 #	energy = value
 #######
 	

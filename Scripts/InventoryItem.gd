@@ -6,7 +6,7 @@ onready var iconPrefab = preload("res://Scenes/UI/InventoryIcon.tscn")
 var itemName = name
 var icon
 var iconTexture: Texture
-var type
+var itemType
 var stackable: bool
 var stackSize: int
 var quantity: float
@@ -17,14 +17,14 @@ var slot
 func _init(_itemName:String, _iconTexture: Texture, _type, _stackable: bool, _stackSize: int, _quantity: int, _values: Dictionary, _price: int, _slot):
 	itemName = _itemName
 	iconTexture = _iconTexture
-	type = _type
+	itemType = _type
 	stackable = _stackable
 	stackSize = _stackSize
 	quantity = _quantity
 	values = _values
-	price = _price
 	slot = _slot
 	icon = CreateIcon(iconTexture)
+	self.price = _price
 
 func CreateIcon(texture: Texture) -> TextureRect:
 	if(!iconPrefab): iconPrefab = load("res://Scenes/UI/InventoryIcon.tscn")

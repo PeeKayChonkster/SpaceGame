@@ -8,7 +8,7 @@ export (float) var maxHullIntegrity
 export (Texture) var inventoryTexture
 export (float) var fuelCapacity
 export (float) var mass = 1000.0
-export (bool) var ownerIsPlayer = false
+export (bool) var pilotIsPlayer = false
 export (bool) var createPilotOnStart = true
 # controls through animationPlayer
 export var wobble: Vector2 = Vector2.ZERO
@@ -36,17 +36,19 @@ var fuelTank = null
 var mode = GameController.SHIPMODE_IDLE
 var weapons = []
 
+var initialized = false
+
 signal hull_update
 signal shield_update
 signal fuel_update
 signal death
 
 func _ready():
-	if (createPilotOnStart): CreatePilot()
 	hullIntegrity = maxHullIntegrity
 	fuel = fuelCapacity
 	UpdateUIBars(GameController.UPDATE_HULL | GameController.UPDATE_FUEL | GameController.UPDATE_SHIELD)
 	InitializeSlots()
+	if (createPilotOnStart): CreatePilot()
 
 func _physics_process(_delta):
 	position += wobble * 0.5
@@ -118,7 +120,9 @@ func InitializeSlots():
 	shieldGenerator = null
 	weapons.clear()
 	for slot in slots:
-		match(slot.type):
+		slot.Update()
+		slot.ship = self
+		match(slot.itemType):
 			ItemDatabase.ITEM_TYPE.TARGET_SYSTEM: 
 				targetSystem = slot.item
 			ItemDatabase.ITEM_TYPE.WEAPON: 
@@ -130,16 +134,26 @@ func InitializeSlots():
 				shieldGenerator = slot.item
 			ItemDatabase.ITEM_TYPE.FUEL:
 				fuelTank = slot.item
-		slot.ship = self
 		if(GameController.initialized): GameController.ui.inventoryUI.UpdateBars(self)
-	if (pilot.attackTarget): pilot.AddAttackTarget(pilot.attackTarget)
 	UpdateUIBars(GameController.UPDATE_HULL | GameController.UPDATE_SHIELD | GameController.UPDATE_FUEL)
+	initialized = true
 
 func Explode():
 	mode = GameController.SHIPMODE_DEAD
 	emit_signal("death")
 	collisionPolygon.set_deferred("disabled", true)
 	yield(Tools.CreateTimer(1.0, self), "timeout")
+	
+		# drop some equipped items
+	for s in slots:
+		if(s.item):
+			if(GameController.rng.randf() < (1.0 / s.item.price) * GameController.itemDropChance):
+				s.remove_child(s.item)
+				yield(Tools.CreateTimer(get_process_delta_time(), self), "timeout")
+				GameController.clutter.add_child(s.item, true)
+				s.item.global_position = global_position + Tools.RandomVec(70.0)
+				s.item.Unequip()
+	
 	EffectsManager.Flash()
 	EffectsManager.ShakeCamera()
 	var newExplosion = shipExplosionPefab.instance()
@@ -171,6 +185,6 @@ func SpendFuel(magnitude, whichRatio, delta):
 
 func CreatePilot():
 	if (!pilot):
-		var newPilot = playerPrefab.instance() if ownerIsPlayer else npcPrefab.instance()
+		var newPilot = playerPrefab.instance() if pilotIsPlayer else npcPrefab.instance()
 		pilotSeat.add_child(newPilot)
 		pilot = newPilot

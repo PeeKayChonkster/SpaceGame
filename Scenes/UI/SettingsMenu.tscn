@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://src/Textures/UI/Buttons/CancelButton_idle.png" type="Texture" id=3]
+[ext_resource path="res://src/Textures/UI/Buttons/CancelButton_pressed.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="SettingsMenu" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FogSettings" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/FogSettings"]
+margin_left = 293.0
+margin_top = 128.0
+margin_right = 731.0
+margin_bottom = 169.0
+custom_constants/separation = 30
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/FogSettings/HSplitContainer"]
+margin_right = 158.0
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 1 )
+text = "Fog quality"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FogQualitySlider" type="HSlider" parent="VBoxContainer/FogSettings/HSplitContainer"]
+margin_left = 188.0
+margin_right = 438.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 7
+max_value = 3.0
+value = 3.0
+rounded = true
+tick_count = 4
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SomethingSettings" type="Control" parent="VBoxContainer"]
+margin_top = 302.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -94.0396
+margin_top = 28.8238
+margin_right = -39.0396
+margin_bottom = 83.8238
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="VBoxContainer/FogSettings/HSplitContainer/FogQualitySlider" to="." method="_on_FogQualitySlider_value_changed"]
+[connection signal="button_up" from="BackButton" to="." method="_on_BackButton_button_up"]

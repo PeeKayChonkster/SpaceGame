@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Item.gd" type="Script" id=1]
 [ext_resource path="res://src/Textures/Items/Consumables/Fuel.png" type="Texture" id=2]
+[ext_resource path="res://src/Textures/Items/Consumables/Fuel_n.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 74.794, 112.735 )
 
 [node name="Fuel" type="Node2D"]
+scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 1 )
 itemName = "Fuel"
 inventoryTexture = ExtResource( 2 )
@@ -12,3 +17,12 @@ type = 4
 stackable = true
 stackSize = 100
 quantity = 100.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )

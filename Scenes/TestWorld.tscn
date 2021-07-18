@@ -1,50 +1,44 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/CosmicBackground.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Ships/TestShip.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/ProceduralSpaceBackground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Items/Weapons/MachineGun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Ships/Ship_Test.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/UI/UI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Ships/ShipDrone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Ships/ShipMoth.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Textures/Ships/Ship2.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Ships/Ship_Drone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Ships/Ship_Moth.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 
-[node name="CosmicBackground" parent="." instance=ExtResource( 1 )]
-light_mask = 0
-z_index = -10
+[node name="ProceduralSpaceBackground" parent="." instance=ExtResource( 1 )]
+
+[node name="Ships" type="Node2D" parent="."]
+
+[node name="Ship_Moth" parent="Ships" instance=ExtResource( 8 )]
+position = Vector2( -415.262, -1254.86 )
+
+[node name="Ship_Test" parent="Ships" instance=ExtResource( 5 )]
+position = Vector2( 976.896, -1162.69 )
+
+[node name="Ship_Test2" parent="Ships" instance=ExtResource( 5 )]
+position = Vector2( 1797.97, -671.242 )
+
+[node name="Ship_Drone" parent="Ships" instance=ExtResource( 7 )]
+position = Vector2( 2499.18, 653.262 )
+pilotIsPlayer = true
 
 [node name="CosmicBodies" type="Node2D" parent="."]
 z_index = -5
 
-[node name="Ships" type="Node2D" parent="."]
+[node name="Clutter" type="Node2D" parent="."]
 
-[node name="TestShip" parent="Ships" instance=ExtResource( 5 )]
-position = Vector2( 257.859, -924.342 )
-
-[node name="TestShip2" parent="Ships" instance=ExtResource( 5 )]
-position = Vector2( 1199.22, -756.924 )
-
-[node name="ShipMoth" parent="Ships" instance=ExtResource( 8 )]
-position = Vector2( -1052, -844 )
-inventoryTexture = ExtResource( 11 )
-
-[node name="Ship_Drone" parent="Ships" instance=ExtResource( 7 )]
-position = Vector2( 1520, 144 )
-mass = 500.0
-ownerIsPlayer = true
+[node name="MachineGun" parent="Clutter" instance=ExtResource( 2 )]
+position = Vector2( 1812.01, 143.781 )
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
+layer = 5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.211765, 0.211765, 0.211765, 1 )
 
-[editable path="Ships/TestShip"]
-[editable path="Ships/TestShip/Slots/ShieldGeneratorSlot/TestShieldGenerator"]
-[editable path="Ships/TestShip2"]
-[editable path="Ships/TestShip2/Slots/ShieldGeneratorSlot/TestShieldGenerator"]
-[editable path="Ships/ShipMoth"]
-[editable path="Ships/ShipMoth/Slots/ShieldGeneratorSlot/TestShieldGenerator"]
-[editable path="Ships/Ship_Drone"]
-[editable path="Ships/Ship_Drone/Slots/ShieldGeneratorSlot/TestShieldGenerator"]
 [editable path="UI"]
 [editable path="UI/MoveCursorBackground"]

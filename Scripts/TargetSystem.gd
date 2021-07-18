@@ -1,4 +1,4 @@
-extends Item
+extends Equipment
 
 export(float) var workSpeedMultiplier
 

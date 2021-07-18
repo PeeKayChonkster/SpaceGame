@@ -1,6 +1,6 @@
 extends SlotUI
 
-export(ItemDatabase.ITEM_TYPE) var type
+export(ItemDatabase.ITEM_TYPE) var itemType
 
 var shipSlotNode   ### node on the ship
 
@@ -19,19 +19,23 @@ func _LinkWithShip(slot):
 	if (shipSlotNode.item && !item):
 		while(!GameController.initialized): yield(get_tree(), "idle_frame")
 		Put(shipSlotNode.item.GetInventoryItem(), false)
-	type = shipSlotNode.type
-	$Label.text = ItemDatabase.GetTypeAsString(type)
+	itemType = shipSlotNode.itemType
+	$Label.text = ItemDatabase.GetTypeAsString(itemType)
 
 func Put(newItem: InventoryItem, instantiate = true):
 	.Put(newItem)
 	if(instantiate):
-		shipSlotNode.add_child(ItemDatabase.GetItem(newItem.itemName))
-		shipSlotNode.item.GetValuesFromInventoryItem(newItem)
+		var item = ItemDatabase.GetItem(newItem.itemName)
+		shipSlotNode.add_child(item)
+		shipSlotNode.ship.InitializeSlots()
+		item.GetValuesFromInventoryItem(newItem)
 		shipSlotNode.Update()
 
 func RemoveItem():
+	shipSlotNode.item.Unequip()
 	shipSlotNode.item.free()
 	shipSlotNode.Update()
+	shipSlotNode.ship.InitializeSlots()
 	.RemoveItem()
 
 #func get_drag_data(_position):
@@ -49,7 +53,7 @@ func RemoveItem():
 #		return null
 
 func drop_data(position, data):
-	if(data.type == type):
+	if(data.itemType == itemType):
 		.drop_data(position, data)
 	else:
 		data.slot.Put(data)

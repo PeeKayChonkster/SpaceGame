@@ -31,7 +31,10 @@ func Deactivate():
 
 func AddItem(item: InventoryItem):
 	if(!.AddItem(item)):
-		item.slot.Put(item)
+		if(item.slot):
+			item.slot.Put(item)
+		return false
+	return true;
 
 func SetShipUI(_ship: Ship):
 	ship = _ship
@@ -43,6 +46,8 @@ func SetShipUI(_ship: Ship):
 	
 	for slot in ship.slots:
 		var newSlot = shipInventorySlotPrefab.instance()
+		newSlot.type = GameController.SLOT_INVENTORY
+		newSlot.ShowPricetag(false)
 		shipTexture.add_child(newSlot)
 		newSlot.rect_position = slot.position + shipTexture.rect_size / 2.0 - newSlot.rect_size / 2.0
 		newSlot._LinkWithShip(slot)

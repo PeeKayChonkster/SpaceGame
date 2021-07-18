@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://src/Textures/UI/Buttons/settings.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -48,5 +49,18 @@ margin_bottom = 124.0
 custom_fonts/font = SubResource( 2 )
 text = "Exit"
 
+[node name="SettingsButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -113.947
+margin_top = 39.2439
+margin_right = -49.9468
+margin_bottom = 103.244
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_up" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_button_up"]
 [connection signal="button_up" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_ExitButton_button_up"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_SettingsButton_pressed"]

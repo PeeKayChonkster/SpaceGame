@@ -1,11 +1,10 @@
-extends Node2D
+extends Interactable
 class_name Planet
 
 
 
 onready var sprite = $Sprite
 onready var planetUI = $PlanetUI
-onready var interactionArea = $Area2D
 onready var ring = $Ring
 
 var radius: float
@@ -21,6 +20,8 @@ var minimapColor = Color.white   ### minimap color
 var planetInfo: PlanetInfo
 
 func _ready():
+	interactable = true
+	interactPrompt = "Land"
 	SetRadius(radius)
 
 func SetRadius(value: float):
@@ -163,14 +164,6 @@ func GetInfo() -> PlanetInfo:
 	planetInfo.orbitSpeed = orbitSpeed
 	planetInfo.radius = radius
 	return planetInfo
-
-func _on_Area2D_body_entered(body):
-	if ("pilot" in body && body.pilot):
-		body.pilot.OfferInteraction(self, "Land")
-
-func _on_Area2D_body_exited(body):
-	if ("pilot" in body && body.pilot):
-		body.pilot.DenyInteraction()
 
 class PlanetInfo:
 	var name

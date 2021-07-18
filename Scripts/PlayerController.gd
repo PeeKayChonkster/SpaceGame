@@ -75,5 +75,12 @@ func _unhandled_input(event):
 			GameController.ui.ActivatePauseMenu()
 	####################
 
+func _notification(what):
+	if(what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST):
+		var event = InputEventAction.new()
+		event.action = "ui_cancel"
+		event.pressed = true
+		Input.parse_input_event(event)
+
 func ScreenToWorld(point:Vector2) -> Vector2 :
 	return get_canvas_transform().affine_inverse().xform(point)

@@ -101,7 +101,7 @@ func AddAttackTarget(target):
 	ship.AddTarget(target)
 	### draw fireCones if weapons belong to player
 	for slot in ship.slots:
-		if(slot.type == ItemDatabase.ITEM_TYPE.WEAPON && slot.item):
+		if(slot.itemType == ItemDatabase.ITEM_TYPE.WEAPON && slot.item):
 			slot.item.drawVisibleFireCone = true
 	ResetTargets()
 	GameController.ui.ActivateAttackUI(target)
@@ -166,7 +166,16 @@ func Die():
 
 # for planets and etc. to offer interaction to the pilot
 func OfferInteraction(target, buttonPrompt: String = "Interact"):
-	GameController.ui.playerUI.ActivateInteractButton(target, buttonPrompt)
+	 # activate interact button
+	GameController.ui.playerUI.ActivateInteractButton(target, buttonPrompt) 
+	
+	# rerender button until it's deactivated from the outside
+	while(GameController.ui.playerUI.interactButton.visible):  
+		if(velocity.length() < GameController.maxInteractVelocity):
+			GameController.ui.playerUI.DisableInteractButton(false)
+		else:
+			GameController.ui.playerUI.DisableInteractButton(true)
+		yield(Tools.CreateTimer(get_physics_process_delta_time(), self), "timeout")
 
 # for planets to stop offering landing to the pilot
 func DenyInteraction():

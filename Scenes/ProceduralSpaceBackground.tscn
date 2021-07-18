@@ -5,15 +5,16 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/ProceduralSpaceBackground.gd" type="Script" id=5]
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 render_mode unshaded;
+
 
 
 uniform float PERIOD;
 uniform float density : hint_range(0.0, 1.0);
 uniform vec2 shift;
-uniform vec4 color : hint_color;
+uniform vec4 color;
 uniform float speed : hint_range(0.0, 0.1);
 uniform sampler2D noiseTex;
 
@@ -30,25 +31,25 @@ void fragment()
 	COLOR = vec4(color.rgb, noise(coord + shift + TIME * speed) * color.a - density);
 }"
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="OpenSimplexNoise" id=2]
 period = 101.1
 persistence = 0.312
 lacunarity = 3.18
 
-[sub_resource type="NoiseTexture" id=2]
+[sub_resource type="NoiseTexture" id=3]
 seamless = true
-noise = SubResource( 1 )
+noise = SubResource( 2 )
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 11 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
 shader_param/PERIOD = 3.0
-shader_param/density = 0.227
+shader_param/density = 0.35
 shader_param/shift = Vector2( 0, 0 )
 shader_param/color = Color( 0.796078, 0, 0, 0.619608 )
 shader_param/speed = 0.0
-shader_param/noiseTex = SubResource( 2 )
+shader_param/noiseTex = SubResource( 3 )
 
-[sub_resource type="Shader" id=12]
+[sub_resource type="Shader" id=5]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode unshaded;
@@ -74,25 +75,25 @@ void fragment()
 	COLOR = vec4(color.rgb, noise(coord + shift + TIME * speed) * color.a - density);
 }"
 
-[sub_resource type="OpenSimplexNoise" id=13]
+[sub_resource type="OpenSimplexNoise" id=6]
 seed = 2
 period = 86.9
 persistence = 0.608
 
-[sub_resource type="NoiseTexture" id=14]
+[sub_resource type="NoiseTexture" id=7]
 seamless = true
-noise = SubResource( 13 )
+noise = SubResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 12 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 5 )
 shader_param/PERIOD = 3.0
 shader_param/density = 0.0
 shader_param/shift = Vector2( 0.411, -0.208 )
 shader_param/color = Color( 0.231373, 0.027451, 0.486275, 0.819608 )
 shader_param/speed = 0.0
-shader_param/noiseTex = SubResource( 14 )
+shader_param/noiseTex = SubResource( 7 )
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -117,49 +118,50 @@ void fragment()
 	COLOR = vec4(color.rgb, noise(coord + shift + TIME * speed) * color.a - density);
 }"
 
-[sub_resource type="OpenSimplexNoise" id=9]
+[sub_resource type="OpenSimplexNoise" id=10]
 seed = 9
 octaves = 4
 period = 66.3
 persistence = 0.526
 lacunarity = 3.3
 
-[sub_resource type="NoiseTexture" id=10]
+[sub_resource type="NoiseTexture" id=11]
 seamless = true
-noise = SubResource( 9 )
+noise = SubResource( 10 )
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 9 )
 shader_param/PERIOD = 4.0
 shader_param/density = 0.423
 shader_param/shift = Vector2( 0, 0.046 )
 shader_param/color = Color( 0, 0.517647, 0.584314, 0.937255 )
 shader_param/speed = null
-shader_param/noiseTex = SubResource( 10 )
+shader_param/noiseTex = SubResource( 11 )
 
 [node name="ProceduralSpaceBackground" type="Sprite"]
 material = ExtResource( 2 )
 scale = Vector2( 100, 100 )
+z_index = -20
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 
 [node name="ProceduralFog1" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.619608 )
-material = SubResource( 3 )
+self_modulate = Color( 1, 1, 1, 0.780392 )
+material = SubResource( 4 )
 position = Vector2( 0.469756, 0.2141 )
 scale = Vector2( 15.6188, 15.5961 )
 texture = ExtResource( 4 )
 
 [node name="ProceduralFog2" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.607843 )
-material = SubResource( 6 )
+self_modulate = Color( 1, 1, 1, 0.780392 )
+material = SubResource( 8 )
 position = Vector2( -0.909103, -0.11824 )
 scale = Vector2( 15.6188, 15.5961 )
 texture = ExtResource( 4 )
 
 [node name="ProceduralFog3" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.619608 )
-material = SubResource( 8 )
+self_modulate = Color( 1, 1, 1, 0.780392 )
+material = SubResource( 12 )
 position = Vector2( -0.909103, -0.11824 )
 scale = Vector2( 15.6188, 15.5961 )
 texture = ExtResource( 4 )

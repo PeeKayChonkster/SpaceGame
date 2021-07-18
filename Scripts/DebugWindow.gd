@@ -1,7 +1,7 @@
 extends Control
 
 
-onready var label = $Label
+onready var label = $RichTextLabel
 
 var vectorsToDraw = []
 

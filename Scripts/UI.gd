@@ -13,6 +13,7 @@ onready var itemDescriptionWindow = $ItemDescriptionWindow
 onready var moveCursor = $MoveCursorBackground/MoveCursor
 onready var startMenu = $StartMenu
 onready var pauseMenu = $PauseMenu
+onready var settingsMenu = $SettingsMenu
 
 func _ready():
 	ToggleDebugUI(DebugUI)
@@ -75,3 +76,8 @@ func DeactivatePauseMenu():
 	GameController.Pause(false)
 	pauseMenu.hide()
 
+func ActivateSettingsMenu():
+	settingsMenu.show()
+
+func DeactivateSettingsMenu():
+	settingsMenu.hide()

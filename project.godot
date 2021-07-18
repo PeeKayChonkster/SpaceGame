@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Item",
+"class": "Equipment",
+"language": "GDScript",
+"path": "res://Scripts/Equipment.gd"
+}, {
+"base": "Node2D",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://Scripts/Interactable.gd"
+}, {
 "base": "Control",
 "class": "Inventory",
 "language": "GDScript",
@@ -24,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/InventorySlot.gd"
 }, {
-"base": "Node2D",
+"base": "Interactable",
 "class": "Item",
 "language": "GDScript",
 "path": "res://Scripts/Item.gd"
@@ -34,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/NPC.gd"
 }, {
-"base": "Node2D",
+"base": "Interactable",
 "class": "Planet",
 "language": "GDScript",
 "path": "res://Scripts/Planet.gd"
@@ -80,6 +90,8 @@ _global_script_classes=[ {
 "path": "res://Scripts/Stargate.gd"
 } ]
 _global_script_class_icons={
+"Equipment": "",
+"Interactable": "",
 "Inventory": "",
 "InventoryItem": "",
 "InventorySlot": "",
@@ -105,9 +117,9 @@ config/icon="res://icon.png"
 [autoload]
 
 ItemDatabase="*res://Scenes/ItemDatabase.tscn"
+MapManager="*res://Scenes/MapManager.tscn"
 GameController="*res://Scenes/GameController.tscn"
 DebugWindow="*res://Scenes/Debug/DebugWindow.tscn"
-MapManager="*res://Scenes/MapManager.tscn"
 Tools="*res://Scripts/Tools.gd"
 MaterialsLoader="*res://Scripts/MaterialsLoader.gd"
 EffectsManager="*res://Scenes/EffectsManager.tscn"

@@ -45,19 +45,19 @@ func ChangeItemPrice(item: InventoryItem, sellingPrice: bool):
 		shopCoefs[item.itemName] = defaultShopCoef
 
 func RefreshShopPrices():
-	for s in GameController.ui.inventoryUI.inventorySlots:
-		if(s.item):
-			ChangeItemPrice(s.item, true)
+	if(activated):
+		for s in GameController.ui.inventoryUI.inventorySlots:
+			if(s.item):
+				ChangeItemPrice(s.item, true)
 	
 	for s in inventorySlots:
 		if(s.item):
 			ChangeItemPrice(s.item, false)
 
-func AddItem(item:InventoryItem) -> bool:
+func AddItem(item:InventoryItem):
 	if (!.AddItem(item)):
 		AddRow()
 		AddItem(item)
-	return true
 
 func Initialize():
 	while(ItemDatabase.items.empty()): yield(get_tree(), "idle_frame")

@@ -4,9 +4,9 @@ extends Control
 onready var hullBar = find_node("HullBar")
 onready var shieldBar = find_node("ShieldBar")
 onready var fuelBar = find_node("FuelBar")
-onready var inventoryButton = $Buttons/InventoryButton
-onready var interactButton = $Buttons/InteractButton
-onready var attackModeButton = $AttackModeButton
+onready var inventoryButton = find_node("InventoryBurron")
+onready var interactButton = find_node("InteractButton")
+onready var attackModeButton = find_node("AttackModeButton")
 
 var player
 var interactionTarget = null
@@ -30,14 +30,19 @@ func Deactivate():
 func _OnTargetDeath():
 	Deactivate()
 
-func ActivateInteractButton(target, buttonPrompt: String):
+func ActivateInteractButton(target, buttonPrompt: String, enabled: bool = true):
 	interactionTarget = target
 	interactButton.text = buttonPrompt
+	interactButton.disabled = !enabled
 	interactButton.show()
 
 func DeactivateInteractButton():
 	interactionTarget = null
 	interactButton.hide()
+
+### button greyed out
+func DisableInteractButton(value: bool):
+	interactButton.disabled = value
 
 func _OnHullUpdate():
 	hullBar.value = player.ship.hullIntegrity

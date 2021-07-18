@@ -1,4 +1,4 @@
-extends Node2D
+extends Interactable
 class_name Item
 
 export(String) var itemName = name
@@ -10,9 +10,17 @@ export(int) var stackSize = 1
 export(float) var quantity = 1
 export(int) var price = 10
 
+onready var sprite = find_node("Sprite")
 
 func _ready():
-	get_parent().item = self
+	#get_parent().item = self
+	interactPrompt = "Pick Up: " + itemName
+
+func Interact(who):
+	.Interact(who)
+	if("inventory" in who):
+		if(who.inventory.AddItem(GetInventoryItem())):
+			queue_free()
 
 func GetInventoryItem() -> InventoryItem:
 	### override this in children to assign values to t
