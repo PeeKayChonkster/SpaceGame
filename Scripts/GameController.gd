@@ -18,10 +18,12 @@ var doubleclick = false
 var initialized = false
 var screenSize
 var maxInteractVelocity = 100.0
-var itemDropChance = 3.0
+var itemDropChance = 10.0
+
+var collisionVelocityDamageCoef = 0.01
 
 var maxMoveTargetDist = 600.0    # responsible for (speed / targetDistance) ratio
-var maxMoveCursorDist = 100.0    # responsible for (speed / CursorDistance) ratio
+var maxMoveCursorDist = 150.0    # responsible for (speed / CursorDistance) ratio
 
 
 onready var rng = RandomNumberGenerator.new()

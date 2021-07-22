@@ -3,12 +3,13 @@ extends Inventory
 
 #onready var inventoryUI = find_node("Inventory")
 onready var shipUI = find_node("ship")
-onready var shipTexture = GameController.FindNodeOrNull("ShipTexture", true, self)
+onready var shipTexture = find_node("ShipTexture")
 onready var shipInventorySlotPrefab = preload("res://Scenes/UI/ShipInventorySlot.tscn")
 onready var shieldBar = find_node("ShieldBar")
 onready var hullBar = find_node("HullBar")
 onready var fuelBar = find_node("FuelBar")
 onready var inventoryPanel = find_node("Inventory")
+onready var closeButton = find_node("CloseButton")
 
 
 var ship

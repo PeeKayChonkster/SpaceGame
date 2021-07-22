@@ -186,6 +186,7 @@ func _OnTargetDeath():
 	RemoveTarget()
 
 func _OnShipDeath():
-	target.disconnect("death", self, "_OnTargetDeath")
-	target = null
+	if(target):
+		target.disconnect("death", self, "_OnTargetDeath")
+		target = null
 	working = false

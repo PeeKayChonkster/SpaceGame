@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/ProceduralSpaceBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Items/Weapons/MachineGun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/CosmicBodies/Meteor1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/CosmicBodies/Meteor2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Ships/Ship_Test.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/UI/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Ships/Ship_Drone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Ships/Ship_Moth.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/CosmicBodies/Meteor3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/CosmicBodies/Meteor4.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 
@@ -39,6 +43,50 @@ layer = 5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.211765, 0.211765, 0.211765, 1 )
+
+[node name="Meteors" type="Node2D" parent="."]
+
+[node name="Meteor1" parent="Meteors" instance=ExtResource( 3 )]
+position = Vector2( 3910.21, -182.712 )
+
+[node name="Meteor2" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2375.35, -515.331 )
+
+[node name="Meteor7" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2443.23, -540.787 )
+
+[node name="Meteor8" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2434.74, -492.703 )
+
+[node name="Meteor9" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2318.78, -461.591 )
+
+[node name="Meteor10" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2412.11, -441.792 )
+
+[node name="Meteor11" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2301.81, -509.674 )
+
+[node name="Meteor12" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2341.4, -569.071 )
+
+[node name="Meteor13" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2392.31, -588.87 )
+
+[node name="Meteor14" parent="Meteors" instance=ExtResource( 4 )]
+position = Vector2( 2474.34, -453.106 )
+
+[node name="Meteor3" parent="Meteors" instance=ExtResource( 9 )]
+position = Vector2( 3665.47, -512.578 )
+
+[node name="Meteor4" parent="Meteors" instance=ExtResource( 10 )]
+position = Vector2( 3473.25, -266.968 )
+
+[node name="Meteor5" parent="Meteors" instance=ExtResource( 10 )]
+position = Vector2( 3353.12, -189.547 )
+
+[node name="Meteor6" parent="Meteors" instance=ExtResource( 10 )]
+position = Vector2( 3289.04, -368.416 )
 
 [editable path="UI"]
 [editable path="UI/MoveCursorBackground"]

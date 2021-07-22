@@ -13,6 +13,7 @@ amount = 200
 lifetime = 20.0
 explosiveness = 1.0
 randomness = 1.0
+visibility_rect = Rect2( -300, -300, 600, 600 )
 process_material = ExtResource( 2 )
 script = ExtResource( 1 )
 lifeTime = 15.0

@@ -4,10 +4,12 @@ onready var nameLabel = find_node("NameLabel")
 onready var http = $HTTPRequest
 onready var newsTextLabel = find_node("NewsTextLabel")
 onready var shop = find_node("Shop")
+onready var inventory = find_node("Inventory")
 onready var tabContainer = find_node("TabContainer")
 
 var planet
 
+var playerInventory    ### for yoinking playerInventory
 
 func _ready():
 	hide()
@@ -51,9 +53,29 @@ func _on_HTTPRequest_request_completed(result, response_code, _headers, body: Po
 	else:
 		newsTextLabel.text = "Check internet connection"
 
+### take entire playerInventory and put it under the "Inventory" tab
+func TakePlayerInventory():
+	if(!playerInventory):
+		playerInventory = GameController.ui.inventoryUI
+		GameController.ui.remove_child(playerInventory)
+		inventory.add_child(playerInventory, true)
+		playerInventory.set_anchors_and_margins_preset(PRESET_WIDE)
+		playerInventory.Activate()
+		playerInventory.closeButton.hide()
+
+### return playerInventory to it's initial place
+func ReturnPlayerInventory():
+	if(playerInventory):
+		inventory.remove_child(playerInventory)
+		GameController.ui.add_child(playerInventory)
+		playerInventory.set_anchors_and_margins_preset(PRESET_WIDE)
+		playerInventory.closeButton.show()
+		playerInventory.Deactivate()
+		playerInventory = null
 
 func _on_TabContainer_tab_changed(tab):
-	if(tab == 1):
-		shop.Activate()
-	else:
-		shop.Deactivate()
+	shop.Deactivate()
+	ReturnPlayerInventory()
+	match(tab):
+		1: shop.Activate()
+		2: TakePlayerInventory()

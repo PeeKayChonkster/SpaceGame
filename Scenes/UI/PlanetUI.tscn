@@ -139,6 +139,7 @@ __meta__ = {
 }
 
 [node name="Shop" type="MarginContainer" parent="NinePatchRect/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -156,7 +157,7 @@ dragger_visibility = 2
 script = ExtResource( 7 )
 
 [node name="ShopInventory" type="Panel" parent="NinePatchRect/TabContainer/Shop/InventoryContainer"]
-margin_right = 1016.0
+margin_right = 508.0
 margin_bottom = 537.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -383,13 +384,13 @@ expand = true
 stretch_mode = 6
 
 [node name="Inventory" type="PanelContainer" parent="NinePatchRect/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 59.0
 margin_right = -4.0
 margin_bottom = -4.0
+rect_pivot_offset = Vector2( -325.273, 25.2665 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 pause_mode = 2

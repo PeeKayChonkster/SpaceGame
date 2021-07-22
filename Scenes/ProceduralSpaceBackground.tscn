@@ -43,8 +43,8 @@ noise = SubResource( 2 )
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 1 )
 shader_param/PERIOD = 3.0
-shader_param/density = 0.35
-shader_param/shift = Vector2( 0, 0 )
+shader_param/density = 0.223
+shader_param/shift = Vector2( 0, -0.619 )
 shader_param/color = Color( 0.796078, 0, 0, 0.619608 )
 shader_param/speed = 0.0
 shader_param/noiseTex = SubResource( 3 )
@@ -88,7 +88,7 @@ noise = SubResource( 6 )
 shader = SubResource( 5 )
 shader_param/PERIOD = 3.0
 shader_param/density = 0.0
-shader_param/shift = Vector2( 0.411, -0.208 )
+shader_param/shift = Vector2( 0.511, -0.183 )
 shader_param/color = Color( 0.231373, 0.027451, 0.486275, 0.819608 )
 shader_param/speed = 0.0
 shader_param/noiseTex = SubResource( 7 )
@@ -133,9 +133,9 @@ noise = SubResource( 10 )
 shader = SubResource( 9 )
 shader_param/PERIOD = 4.0
 shader_param/density = 0.423
-shader_param/shift = Vector2( 0, 0.046 )
+shader_param/shift = Vector2( -0.223, 0.035 )
 shader_param/color = Color( 0, 0.517647, 0.584314, 0.937255 )
-shader_param/speed = null
+shader_param/speed = 0.0
 shader_param/noiseTex = SubResource( 11 )
 
 [node name="ProceduralSpaceBackground" type="Sprite"]

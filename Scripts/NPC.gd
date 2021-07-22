@@ -122,6 +122,7 @@ func Rotate(delta, dir: Vector2):
 
 #########################
 
+
 func _on_VisionArea2D_body_entered(body):
 	if("pilotSeat" in body):
 		var pilot = body.pilotSeat.get_child(0)

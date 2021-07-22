@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 class_name Ship
 
 const fuelToThrustRatio = 0.0003
@@ -52,6 +52,19 @@ func _ready():
 
 func _physics_process(_delta):
 	position += wobble * 0.5
+
+func CheckForCollision(collision):
+	if(collision.collider is RigidBody2D):
+		var resultVelocity = pilot.velocity - collision.collider.linear_velocity
+		var damage = resultVelocity.length() * GameController.collisionVelocityDamageCoef
+		TakeDamage(damage)
+		if(collision.collider.has_method("TakeDamage")):
+			collision.collider.TakeDamage(damage, self)
+		
+		var body = collision.collider
+		var impulse = body.mass * ((mass * pilot.velocity + body.mass * body.linear_velocity) / (mass + body.mass))
+		collision.collider.apply_impulse(collision.collider.to_local(collision.position), impulse)
+		pilot.velocity = impulse / body.mass
 
 func SetExaust(coef: float):
 	if(engine):

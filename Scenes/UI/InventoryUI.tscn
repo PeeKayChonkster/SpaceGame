@@ -65,6 +65,8 @@ font_data = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -88,38 +90,40 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VSplitContainer" type="VSplitContainer" parent="HBoxContainer/Ship"]
+[node name="ShipTexture" type="TextureRect" parent="HBoxContainer/Ship"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-split_offset = 526
+size_flags_horizontal = 3
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShipTexture" type="TextureRect" parent="HBoxContainer/Ship/VSplitContainer"]
-margin_right = 507.0
-margin_bottom = 526.0
+[node name="StatsMarginContainer" type="MarginContainer" parent="HBoxContainer/Ship"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -74.0
+rect_min_size = Vector2( 500, 70 )
 mouse_filter = 2
-expand = true
-stretch_mode = 6
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Ship/VSplitContainer"]
-margin_top = 538.0
-margin_right = 507.0
-margin_bottom = 600.0
-mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 20
 custom_constants/margin_top = 5
 custom_constants/margin_left = 50
 custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="StatsPanel" type="Panel" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer"]
+[node name="StatsPanel" type="Panel" parent="HBoxContainer/Ship/StatsMarginContainer"]
 self_modulate = Color( 1, 1, 1, 0.360784 )
 margin_left = 50.0
 margin_top = 5.0
 margin_right = 487.0
-margin_bottom = 52.0
+margin_bottom = 64.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -127,7 +131,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -135,10 +139,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShieldBar" type="ProgressBar" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer"]
+[node name="ShieldBar" type="ProgressBar" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.611765 )
 margin_right = 437.0
-margin_bottom = 13.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 15, 0 )
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -149,7 +153,7 @@ custom_fonts/font = SubResource( 3 )
 value = 50.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer/ShieldBar"]
+[node name="Label" type="Label" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel/VBoxContainer/ShieldBar"]
 anchor_bottom = 1.0
 margin_left = -38.0976
 margin_top = -2.77795
@@ -163,11 +167,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HullBar" type="ProgressBar" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer"]
+[node name="HullBar" type="ProgressBar" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.611765 )
-margin_top = 17.0
+margin_top = 21.0
 margin_right = 437.0
-margin_bottom = 30.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 15, 0 )
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -178,7 +182,7 @@ custom_fonts/font = SubResource( 3 )
 value = 50.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer/HullBar"]
+[node name="Label" type="Label" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel/VBoxContainer/HullBar"]
 anchor_bottom = 1.0
 margin_left = -27.2349
 margin_top = -2.24744
@@ -192,11 +196,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FuelBar" type="ProgressBar" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer"]
+[node name="FuelBar" type="ProgressBar" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.611765 )
-margin_top = 34.0
+margin_top = 42.0
 margin_right = 437.0
-margin_bottom = 47.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 15, 0 )
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -207,7 +211,7 @@ custom_fonts/font = SubResource( 3 )
 value = 50.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="HBoxContainer/Ship/VSplitContainer/MarginContainer/StatsPanel/VBoxContainer/FuelBar"]
+[node name="Label" type="Label" parent="HBoxContainer/Ship/StatsMarginContainer/StatsPanel/VBoxContainer/FuelBar"]
 anchor_bottom = 1.0
 margin_left = -27.6763
 margin_top = -2.62201

@@ -48,11 +48,11 @@ func _OnOwnerDeath():
 	bulletOwner = null
 
 func _on_Bullet_body_entered(body):
-	if(body is Ship && bulletOwner && bulletOwner != body):
+	if(body.has_method("TakeDamage") && bulletOwner && bulletOwner != body):
 		var newParticles = particlesPrefab.instance()
 		GameController.world.add_child(newParticles)
 		newParticles.global_position = global_position
 		body.TakeDamage(damage, bulletOwner)
-		if(bulletOwner.pilot is Player):
+		if(body is Ship && bulletOwner.pilot is Player):
 			bulletOwner.pilot.AddAttackTarget(body)
 		queue_free()

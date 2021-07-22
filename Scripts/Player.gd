@@ -4,7 +4,7 @@ class_name Player
 export (NodePath) var shipPath
 
 onready var destReticlePrefab = preload("res://Scenes/UI/DestinationReticle.tscn")
-onready var ship = get_parent().get_parent()
+onready var ship: KinematicBody2D = get_parent().get_parent()
 
 
 var camera
@@ -36,11 +36,14 @@ func _process(_delta):
 func _physics_process(delta):
 	if(initialized && !dead):
 		CalculateVelocity(delta)
-		velocity = ship.move_and_slide(velocity)
+		#velocity = ship.move_and_slide(velocity, Vector2.ZERO, false, 4, 0.0, false)
+		var collision = ship.move_and_collide(velocity * delta, false)
+		if(collision):
+			ship.CheckForCollision(collision)
 
 func CalculateVelocity(delta):
 	var cursorDist
-	var dir
+	var dir: Vector2
 	
 	# Calculate accelerationCoef based on controllMode an cursorDist
 	if(controller.controllMode == 1 && !followTarget):
@@ -59,14 +62,19 @@ func CalculateVelocity(delta):
 		velocity += dir * linearAcceleration * accelerationCoef * delta
 		velocity = velocity.clamped(ship.engine.maxSpeed)
 		# friction
-		if(is_equal_approx(accelerationCoef, 0.0)):
-			velocity += -velocity.normalized() * linearAcceleration * delta
+		
+		velocity -= velocity.normalized() * 10.0
+		
+#		if(is_equal_approx(accelerationCoef, 0.0)):
+#			velocity += -velocity.normalized() * linearAcceleration * delta
+		
+		
 		Rotate(delta, dir)
 		ship.SpendFuel(ship.engine.thrust * accelerationCoef, 0,delta)
 		
 		#### Extra
 		camera.SetDynamicZoomRatio((velocity.length() + cursorDist / ((get_viewport().size.x + get_viewport().size.y) / 3.0)) / ship.engine.maxSpeed / 2.0)
-		#DebugWindow.OutputVec2(velocity, true)
+		DebugWindow.OutputVec2(velocity, true)
 		####
 		
 	# Slowly stop if no fuel or engine

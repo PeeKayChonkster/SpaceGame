@@ -15,7 +15,7 @@ func RandomVec(fRange: float):
 func LerpVec2(vec1:Vector2, vec2: Vector2, weigth: float):
 	return lerp(vec1, vec2, weigth);
 
-func CreateTimer(time: float, parent = self):
+func CreateTimer(time: float, parent = self) -> Timer:
 	var timer = Timer.new()
 	parent.add_child(timer)
 	timer.one_shot = true
