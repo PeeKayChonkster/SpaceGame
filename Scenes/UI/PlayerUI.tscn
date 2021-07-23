@@ -185,30 +185,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InventoryButton" type="Button" parent="."]
-margin_left = 25.0
-margin_top = 22.0
-margin_right = 191.0
-margin_bottom = 61.0
-custom_fonts/font = SubResource( 9 )
-text = "Inventory"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="InteractButton" type="Button" parent="."]
-margin_left = 25.0
-margin_top = 88.4308
-margin_right = 191.0
-margin_bottom = 127.431
-size_flags_horizontal = 9
-size_flags_vertical = 9
-custom_fonts/font = SubResource( 9 )
-text = "Interact"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AttackModeButton" type="TextureButton" parent="."]
 self_modulate = Color( 1, 1, 1, 0.831373 )
 anchor_left = 1.0
@@ -232,7 +208,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InteractVBoxContainer" type="VBoxContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+margin_left = 25.0
+margin_top = 19.0
+margin_right = 195.0
+margin_bottom = 117.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryButton" type="Button" parent="InteractVBoxContainer"]
+margin_right = 170.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 9 )
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InteractButton" type="Button" parent="InteractVBoxContainer"]
+margin_top = 59.0
+margin_right = 170.0
+margin_bottom = 98.0
+size_flags_horizontal = 9
+size_flags_vertical = 9
+custom_fonts/font = SubResource( 9 )
+text = "Interact"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="gui_input" from="MainPanel" to="." method="_on_Panel_gui_input"]
-[connection signal="button_up" from="InventoryButton" to="." method="_on_InventoryButton_button_up"]
-[connection signal="button_up" from="InteractButton" to="." method="_on_InteractButton_button_up"]
 [connection signal="toggled" from="AttackModeButton" to="." method="_on_AttackModeButton_toggled"]
+[connection signal="button_up" from="InteractVBoxContainer/InventoryButton" to="." method="_on_InventoryButton_button_up"]
+[connection signal="button_up" from="InteractVBoxContainer/InteractButton" to="." method="_on_InteractButton_button_up"]

@@ -15,3 +15,6 @@ func AddPoint(pos: Vector2) -> void:
 	line.add_point(pos)
 	while(line.get_point_count() > length):
 		line.remove_point(0)
+
+func Clear():
+	line.clear_points()

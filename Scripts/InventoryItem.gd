@@ -3,13 +3,15 @@ class_name InventoryItem
 
 onready var iconPrefab = preload("res://Scenes/UI/InventoryIcon.tscn")
 
+var selfScript = load("res://Scripts/InventoryItem.gd")
+
 var itemName = name
 var icon
 var iconTexture: Texture
 var itemType
 var stackable: bool
 var stackSize: int
-var quantity: float
+var quantity: int setget set_quantity
 var values = {}   # for conserving value of shieldGenerator energy, etc
 var price: int setget set_price
 var slot
@@ -40,16 +42,25 @@ func CreateIcon(texture: Texture) -> TextureRect:
 	if(stackable): quantityLabel.show()
 	return newIcon
 
-func Split(value: float) -> InventoryItem:
+func Split(value: int) -> InventoryItem:
 	var portion = min(quantity, value)
-	quantity -= value
-	var item = self.duplicate()
-	item.quantity = value
+	self.quantity -= portion
+	var item = Duplicate()
+	item.quantity = portion
 	if(quantity <= 0.0): queue_free()
 	return item
-	pass
 	###
 
+func Duplicate():
+	var newItem = selfScript.new(itemName, iconTexture, itemType, stackable, stackSize, quantity, values.duplicate(true), price, slot)
+	return newItem
+
+### setters/getters ###
 func set_price(value):
 	price = value
 	icon.find_node("PricetagLabel").text = str(price)
+	
+func set_quantity(value):
+	quantity = value
+	icon.find_node("QuantityLabel").text = str(quantity)
+#######################

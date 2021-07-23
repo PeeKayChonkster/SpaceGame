@@ -5,16 +5,17 @@ onready var hullBar = find_node("HullBar")
 onready var shieldBar = find_node("ShieldBar")
 onready var fuelBar = find_node("FuelBar")
 onready var inventoryButton = find_node("InventoryBurron")
-onready var interactButton = find_node("InteractButton")
+onready var interactButtonPrefab = find_node("InteractButton")
 onready var attackModeButton = find_node("AttackModeButton")
+onready var interactButttonsContainer = find_node("InteractVBoxContainer")
 
 var player
-var interactionTarget = null
 var tween: Tween
+var interactButtons = {}
 
 func _ready():
 	var _error = GameController.connect("player_initialized", self, "_Initialize")
-	interactButton.hide()
+	interactButtonPrefab.hide()
 	tween = Tween.new()
 	add_child(tween)
 
@@ -31,18 +32,23 @@ func _OnTargetDeath():
 	Deactivate()
 
 func ActivateInteractButton(target, buttonPrompt: String, enabled: bool = true):
-	interactionTarget = target
-	interactButton.text = buttonPrompt
-	interactButton.disabled = !enabled
-	interactButton.show()
+	var newButton = interactButtonPrefab.duplicate(0)
+	interactButtons[target] = newButton
+	newButton.text = buttonPrompt
+	newButton.disabled = !enabled
+	newButton.connect("button_up", self, "_on_InteractButton_button_up", [target])
+	interactButttonsContainer.add_child(newButton)
+	newButton.show()
 
-func DeactivateInteractButton():
-	interactionTarget = null
-	interactButton.hide()
+func DeactivateInteractButton(target):
+	interactButtons[target].disconnect("button_up", self, "_on_InteractButton_button_up")
+	interactButtons[target].queue_free()
+	interactButtons.erase(target)
 
 ### button greyed out
-func DisableInteractButton(value: bool):
-	interactButton.disabled = value
+func DisableInteractButtons(value: bool):
+	for k in interactButtons.keys():
+		interactButtons[k].disabled = value
 
 func _OnHullUpdate():
 	hullBar.value = player.ship.hullIntegrity
@@ -87,8 +93,8 @@ func _on_Panel_gui_input(event):
 func _on_InventoryButton_button_up():
 	GameController.ui.ActivateInventory()
 
-func _on_InteractButton_button_up():
-	player.InteractWith(interactionTarget)
+func _on_InteractButton_button_up(target):
+	player.InteractWith(target)
 
 
 func _on_AttackModeButton_toggled(button_pressed):

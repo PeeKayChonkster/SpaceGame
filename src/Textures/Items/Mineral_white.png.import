@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FuelAnim_3.png-5a6a83fb02f5cff3e32a684b4bf5ae7c.stex"
+path="res://.import/Mineral_white.png-1acfab282886642c7affa9aefb09858c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Textures/Items/Consumables/FuelAnim/FuelAnim_3.png"
-dest_files=[ "res://.import/FuelAnim_3.png-5a6a83fb02f5cff3e32a684b4bf5ae7c.stex" ]
+source_file="res://src/Textures/Items/Mineral_white.png"
+dest_files=[ "res://.import/Mineral_white.png-1acfab282886642c7affa9aefb09858c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -87,7 +87,7 @@ func OfferInteraction(_target, _buttonPromt = "Interact"):
 	pass
 
 # for planets to stop offering landing to the pilot
-func DenyInteraction():
+func DenyInteraction(_target):
 	pass
 
 func Interact(_who):
@@ -105,7 +105,7 @@ func CalculateVelocity(delta):
 	velocity += dir * linearAcceleration * accelerationCoef * delta
 	velocity = velocity.clamped(ship.engine.maxSpeed)
 	# friction
-	velocity -= (pow(sin(dir.angle_to(velocity)), 4.0) * velocity + velocity * (1.0 - accelerationCoef)) * 0.02
+	velocity -= (pow(sin(dir.angle_to(velocity)), 4.0) * velocity * (1.0 - accelerationCoef) + velocity * (1.0 - accelerationCoef)) * 0.02
 	
 #	if(is_equal_approx(accelerationCoef, 0.0)):
 #		velocity += -velocity.normalized() * linearAcceleration * delta

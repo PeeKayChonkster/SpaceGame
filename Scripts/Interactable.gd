@@ -10,7 +10,7 @@ func _ready():
 	interactionArea.connect("body_entered", self, "_on_Area2D_body_entered")
 	interactionArea.connect("body_exited", self, "_on_Area2D_body_exited")
 
-func Interact(who):
+func Interact(_who):
 	pass
 
 func _on_Area2D_body_entered(body):
@@ -19,4 +19,4 @@ func _on_Area2D_body_entered(body):
 
 func _on_Area2D_body_exited(body):
 	if (interactable && "pilot" in body && body.pilot):
-		body.pilot.DenyInteraction()
+		body.pilot.DenyInteraction(self)

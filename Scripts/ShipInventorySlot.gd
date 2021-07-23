@@ -32,7 +32,6 @@ func Put(newItem: InventoryItem, instantiate = true):
 		shipSlotNode.Update()
 
 func RemoveItem():
-	shipSlotNode.item.Unequip()
 	shipSlotNode.item.free()
 	shipSlotNode.Update()
 	shipSlotNode.ship.InitializeSlots()
@@ -54,7 +53,7 @@ func RemoveItem():
 
 func drop_data(position, data):
 	if(data.itemType == itemType):
-		.drop_data(position, data)
+		Put(data)
 	else:
 		data.slot.Put(data)
 

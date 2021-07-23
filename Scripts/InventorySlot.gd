@@ -7,46 +7,52 @@ func _ready():
 func Initialize():
 	.Initialize()
 
-func Put(newItem: InventoryItem):
-	if(newItem.slot && newItem.slot.type != type):
-		MakeTransaction(newItem)
-		return
-	.Put(newItem)
+#func Put(newItem: InventoryItem):
+#	if(newItem.slot && newItem.slot.type != type):
+#		return MakeTransaction(newItem)
+#	return .Put(newItem)
 
-func MakeTransaction(item):
-	if(item.price > inventory.money):  ### not enough money
-		item.slot.Put(item)
-	else:
-		var oldItemSlot = item.slot
-		
-		### decide on where to put item
-		if(item):     ### slot is occupied
-			if(inventory.Full()):  ### return item if inventory is full, or add row if this is a shop
-				if(inventory is Shop):
-					inventory.AddRow();
-					item.slot = self
-					inventory.AddItem(item);
-				else:
-					item.slot.Put(item)
-					return
-			else:
-				item.slot = self    ### add item to the first empty slot
-				inventory.AddItem(item)
-		else:
-			item.slot.Put(item)    ### slot is empty
-		
-		inventory.money -= item.price
-		oldItemSlot.inventory.money += item.price
-		
-		# find out which inventory(receiving or sending) is of class Shop
-		# and refresh prices
-		if(inventory is Shop): inventory.RefreshShopPrices()
-		else: oldItemSlot.inventory.RefreshShopPrices()
-		
-		###########
-		### Make money sound here
-		###########
-		return true
+#func MakeTransaction(item) -> int:
+#	if(item.price * item.quantity > inventory.money):  ### not enough money
+#		var difference: int = inventory.money / item.price
+#		if(difference > 0):
+#			var item1 = item.Split(difference)
+#			item.slot.Put(item)
+#			return .Put(item1)
+#		else:
+#			item.slot.Put(item)
+#			return 0
+#	else:
+#		var oldItemSlot = item.slot
+#
+#		### decide on where to put item
+#		if(item):     ### slot is occupied
+#			if(inventory.Full()):  ### return item if inventory is full, or add row if this is a shop
+#				if(inventory is Shop):
+#					inventory.AddRow();
+#					item.slot = self
+#					inventory.AddItem(item);
+#				else:
+#					item.slot.Put(item)
+#					return 0
+#			else:
+#				item.slot = self    ### add item to the first empty slot
+#				inventory.AddItem(item)
+#		else:
+#			item.slot.Put(item)    ### slot is empty
+#
+#		inventory.money -= item.price * item.quantity
+#		oldItemSlot.inventory.money += item.price * item.quantity
+#
+#		# find out which inventory(receiving or sending) is of class Shop
+#		# and refresh prices
+#		if(inventory is Shop): inventory.RefreshShopPrices()
+#		else: oldItemSlot.inventory.RefreshShopPrices()
+#
+#		###########
+#		### Make money sound here
+#		###########
+#		return item.quantity
 
 func RemoveItem():
 	.RemoveItem()

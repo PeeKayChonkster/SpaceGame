@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Textures/UI/Minimap/Minimap_Frame.png" type="Texture" id=1]
 [ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/Shop.gd" type="Script" id=5]
 [ext_resource path="res://src/Textures/UI/credit.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/ReturnDroppedItemToInventory.gd" type="Script" id=7]
+[ext_resource path="res://src/Themes/ScrollList_theme.tres" type="Theme" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -139,7 +140,6 @@ __meta__ = {
 }
 
 [node name="Shop" type="MarginContainer" parent="NinePatchRect/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -157,7 +157,7 @@ dragger_visibility = 2
 script = ExtResource( 7 )
 
 [node name="ShopInventory" type="Panel" parent="NinePatchRect/TabContainer/Shop/InventoryContainer"]
-margin_right = 508.0
+margin_right = 1016.0
 margin_bottom = 537.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -174,7 +174,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer"]
-margin_right = 508.0
+margin_right = 522.0
 margin_bottom = 481.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -190,22 +190,23 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 498.0
+margin_right = 512.0
 margin_bottom = 481.0
 mouse_filter = 2
+theme = ExtResource( 8 )
 scroll_horizontal_enabled = false
 
 [node name="CenterContainer" type="CenterContainer" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer/MarginContainer/ScrollContainer"]
-margin_right = 488.0
+margin_right = 502.0
 margin_bottom = 476.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer"]
-margin_left = 8.0
+margin_left = 15.0
 margin_top = 2.0
-margin_right = 480.0
+margin_right = 487.0
 margin_bottom = 474.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -341,7 +342,7 @@ margin_bottom = 472.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer"]
 margin_top = 493.0
-margin_right = 508.0
+margin_right = 522.0
 margin_bottom = 537.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -356,14 +357,14 @@ __meta__ = {
 
 [node name="HSplitContainer" type="HSplitContainer" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer/MarginContainer2"]
 margin_left = 40.0
-margin_right = 468.0
+margin_right = 482.0
 margin_bottom = 34.0
 mouse_filter = 2
 split_offset = -30
 dragger_visibility = 1
 
 [node name="MoneyLabel" type="Label" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer/MarginContainer2/HSplitContainer"]
-margin_right = 386.0
+margin_right = 400.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -375,8 +376,8 @@ clip_text = true
 max_lines_visible = 1
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/TabContainer/Shop/InventoryContainer/ShopInventory/VSplitContainer/MarginContainer2/HSplitContainer"]
-margin_left = 398.0
-margin_right = 428.0
+margin_left = 412.0
+margin_right = 442.0
 margin_bottom = 34.0
 mouse_filter = 2
 texture = ExtResource( 6 )
@@ -384,6 +385,7 @@ expand = true
 stretch_mode = 6
 
 [node name="Inventory" type="PanelContainer" parent="NinePatchRect/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0

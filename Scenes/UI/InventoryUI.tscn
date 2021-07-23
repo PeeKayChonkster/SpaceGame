@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/UI/InventorySlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/PlayerInventory.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://src/Textures/UI/credit.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/ReturnDroppedItemToInventory.gd" type="Script" id=7]
+[ext_resource path="res://src/Themes/ScrollList_theme.tres" type="Theme" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.113725, 1, 0.807843 )
@@ -272,6 +273,7 @@ margin_top = 5.0
 margin_right = 497.0
 margin_bottom = 544.0
 mouse_filter = 2
+theme = ExtResource( 8 )
 scroll_horizontal_enabled = false
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Inventory/VSplitContainer/MarginContainer/ScrollContainer"]

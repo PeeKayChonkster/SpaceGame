@@ -21,6 +21,7 @@ var attackTarget
 var lastCursorScreenPosition = Vector2.ZERO
 var moveCursor
 var initialized = false
+var interactionAllowed = true
 # from 0 to 1. Shows how much of a thrust must be used. Used by SetExaust(), CalculateVelocity()
 var accelerationCoef: float
 
@@ -63,8 +64,10 @@ func CalculateVelocity(delta):
 		velocity = velocity.clamped(ship.engine.maxSpeed)
 		# friction
 		
+		### Smart friction
 		velocity -= (pow(sin(dir.angle_to(velocity)), 4.0) * velocity * (1.0 - accelerationCoef) + velocity * (1.0 - accelerationCoef)) * 0.02
 		
+		### Realistic friction
 #		if(is_equal_approx(accelerationCoef, 0.0)):
 #			velocity += -velocity.normalized() * linearAcceleration * delta
 		
@@ -84,14 +87,16 @@ func CalculateVelocity(delta):
 
 func Rotate(delta, dir: Vector2):
 	if (!dir.is_equal_approx(Vector2.ZERO)):
-		var angularAcceleration = ship.engine.torque * 0.8 / ship.mass
+		var angularAcceleration = ship.engine.torque / ship.mass
 		var angle = lerp_angle(ship.transform.get_rotation() - PI/2.0, dir.angle(), angularAcceleration * delta)
 		#DebugWindow.OutputString("angle = " + str(angle * (180.0/PI)))
 		ship.rotation = angle + PI/2.0
 
 func Land(planet: Planet):
-	GameController.Pause(true)
+	interactionAllowed = false
 	yield(ship.Land(), "completed")   ### wait for animation to play itself out
+	interactionAllowed = true
+	GameController.Pause(true)
 	ResetTargets(true)
 	planet.ActivateUI()
 
@@ -99,7 +104,9 @@ func TakeOff(planet: Planet):
 	GameController.Pause(false)
 	ship.global_position = planet.global_position
 	velocity = Vector2.ZERO
-	ship.TakeOff()
+	interactionAllowed = false
+	yield(ship.TakeOff(), "completed")
+	interactionAllowed = true
 
 func AddAttackTarget(target):
 	if(attackTarget == target || target.mode == GameController.SHIPMODE_DEAD): return
@@ -178,16 +185,16 @@ func OfferInteraction(target, buttonPrompt: String = "Interact"):
 	GameController.ui.playerUI.ActivateInteractButton(target, buttonPrompt) 
 	
 	# rerender button until it's deactivated from the outside
-	while(GameController.ui.playerUI.interactButton.visible):  
-		if(velocity.length() < GameController.maxInteractVelocity):
-			GameController.ui.playerUI.DisableInteractButton(false)
+	while(GameController.ui.playerUI.interactButtons.has(target)):  
+		if(velocity.length() < GameController.maxInteractVelocity && interactionAllowed):
+			GameController.ui.playerUI.DisableInteractButtons(false)
 		else:
-			GameController.ui.playerUI.DisableInteractButton(true)
+			GameController.ui.playerUI.DisableInteractButtons(true)
 		yield(Tools.CreateTimer(get_physics_process_delta_time(), self), "timeout")
 
 # for planets to stop offering landing to the pilot
-func DenyInteraction():
-	GameController.ui.playerUI.DeactivateInteractButton()
+func DenyInteraction(target):
+	GameController.ui.playerUI.DeactivateInteractButton(target)
 
 func ResetTargets(resetMoveTarget = false):
 	if(resetMoveTarget):
@@ -202,6 +209,7 @@ func Move(pos: Vector2):
 	ResetTargets(true)
 	ship.global_position = pos
 	camera.global_position = pos
+	ship.ClearTrail()
 
 # keep moveCursor transparent if there is no input
 #func handleMoveCursor():

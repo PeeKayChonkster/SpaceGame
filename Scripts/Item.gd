@@ -15,6 +15,7 @@ onready var sprite = find_node("Sprite")
 func _ready():
 	#get_parent().item = self
 	interactPrompt = "Pick Up: " + itemName
+	if(!stackable): quantity = 1
 
 func Interact(who):
 	.Interact(who)

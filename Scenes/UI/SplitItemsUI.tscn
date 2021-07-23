@@ -1,0 +1,182 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/SplitItemsUI.gd" type="Script" id=1]
+[ext_resource path="res://RobotoSlab-VariableFont_wght1.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/Textures/UI/credit.png" type="Texture" id=3]
+[ext_resource path="res://src/Textures/UI/Minimap/Mimimap_stargate.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+resource_local_to_scene = true
+size = 25
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="SplitItemsUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -266.0
+margin_top = -129.0
+margin_right = 266.0
+margin_bottom = 129.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 512.0
+margin_bottom = 238.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 28
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/MarginContainer/VSplitContainer"]
+margin_right = 492.0
+margin_bottom = 50.0
+custom_constants/separation = 15
+split_offset = -112
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VSplitContainer/HSplitContainer"]
+margin_top = 8.0
+margin_right = 127.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "555555555"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/VSplitContainer/HSplitContainer"]
+margin_left = 142.0
+margin_right = 492.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_icons/grabber_disabled = ExtResource( 4 )
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 4 )
+max_value = 3.0
+value = 3.0
+rounded = true
+tick_count = 4
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VSplitContainer"]
+margin_top = 78.0
+margin_right = 492.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoneyLabel" type="Label" parent="Panel/MarginContainer/VSplitContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.0
+margin_top = -17.0
+margin_right = -11.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 2
+valign = 1
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VSplitContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 5.27228
+margin_top = -25.0
+margin_right = 55.2723
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 50 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="Panel/MarginContainer/VSplitContainer"]
+margin_top = 162.0
+margin_right = 492.0
+margin_bottom = 218.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 84
+dragger_visibility = 1
+
+[node name="CancelButton" type="Button" parent="Panel/MarginContainer/VSplitContainer/HSplitContainer2"]
+margin_right = 204.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Cancel"
+
+[node name="AcceptButton" type="Button" parent="Panel/MarginContainer/VSplitContainer/HSplitContainer2"]
+margin_left = 288.0
+margin_right = 492.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "Accept"
+
+[connection signal="value_changed" from="Panel/MarginContainer/VSplitContainer/HSplitContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="button_up" from="Panel/MarginContainer/VSplitContainer/HSplitContainer2/CancelButton" to="." method="_on_CancelButton_button_up"]
+[connection signal="button_up" from="Panel/MarginContainer/VSplitContainer/HSplitContainer2/AcceptButton" to="." method="_on_AcceptButton_button_up"]

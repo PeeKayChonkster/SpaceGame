@@ -25,6 +25,7 @@ onready var sprite = $Sprite
 onready var collisionPolygon = $CollisionPolygon2D
 onready var tween = $Tween
 onready var initialScale = scale
+onready var trail = get_node("Trail")
 
 
 var hullIntegrity: float
@@ -51,19 +52,23 @@ func _ready():
 	if (createPilotOnStart): CreatePilot()
 
 func _physics_process(_delta):
-	position += wobble * 0.5
+	#position += wobble * 0.5
+	pass
 
 func CheckForCollision(collision):
 	if(collision.collider is RigidBody2D):
 		var resultVelocity = pilot.velocity - collision.collider.linear_velocity
 		var damage = resultVelocity.length() * GameController.collisionVelocityDamageCoef
-		TakeDamage(damage)
+		
+		### Take damage depending on collider 
 		if(collision.collider.has_method("TakeDamage")):
-			collision.collider.TakeDamage(damage, self)
+			TakeDamage(collision.collider.TakeDamage(damage, self))
+		### Take regular damage
+		else:
+			TakeDamage(damage)
 		
 		var body = collision.collider
 		var v1 = pilot.velocity.project(collision.normal)
-		var v2 = body.linear_velocity.project(collision.normal)
 		var impulse =  (body.mass * mass / (body.mass + mass)) * v1  ###((body.mass * v2 + mass * v1) / (body.mass + mass)) * body.mass
 		collision.collider.apply_impulse(collision.collider.to_local(collision.position), impulse)
 		pilot.velocity -= impulse / mass
@@ -86,6 +91,7 @@ func Land():
 
 func TakeOff():
 	#animationPlayer.play("Takeoff")
+	ClearTrail()
 	tween.interpolate_property(self, "scale", Vector2.ZERO, initialScale, 1.0, Tween.TRANS_LINEAR)
 	tween.start()
 	while(tween.is_active()):
@@ -166,7 +172,7 @@ func Explode():
 				s.remove_child(s.item)
 				yield(Tools.CreateTimer(get_process_delta_time(), self), "timeout")
 				GameController.clutter.add_child(s.item, true)
-				s.item.global_position = global_position + Tools.RandomVec(70.0)
+				s.item.global_position = global_position + Tools.RandomVec(30.0)
 				s.item.Unequip()
 	
 	EffectsManager.Flash()
@@ -203,3 +209,7 @@ func CreatePilot():
 		var newPilot = playerPrefab.instance() if pilotIsPlayer else npcPrefab.instance()
 		pilotSeat.add_child(newPilot)
 		pilot = newPilot
+
+func ClearTrail():
+	for c in trail.get_children():
+		c.Clear()

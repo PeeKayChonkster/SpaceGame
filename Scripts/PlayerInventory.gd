@@ -17,10 +17,9 @@ var shipSlots = []
 
 func _ready():
 	while(ItemDatabase.items.empty()): yield(get_tree(), "idle_frame")
-	var _err = AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
+	var _err = AddItem(ItemDatabase.GetInventoryItem("FuelCrystal"))
+	_err = AddItem(ItemDatabase.GetInventoryItem("FuelCrystal"))
 	_err = AddItem(ItemDatabase.GetInventoryItem("MachineGun"))
-	_err = AddItem(ItemDatabase.GetInventoryItem("TargetSystem"))
-	_err = AddItem(ItemDatabase.GetInventoryItem("Fuel"))
 	Deactivate()
 
 func Activate():
@@ -30,8 +29,8 @@ func Activate():
 func Deactivate():
 	hide()
 
-func AddItem(item: InventoryItem):
-	if(!.AddItem(item)):
+func AddItem(item: InventoryItem, slot = null):
+	if(!.AddItem(item, slot)):
 		if(item.slot):
 			item.slot.Put(item)
 		return false

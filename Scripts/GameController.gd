@@ -92,9 +92,9 @@ func ExitGame():
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 
 func ChangeSystem(stargate):
-	Pause(true)
+	#Pause(true)
 	yield(player.ship.Land(), "completed")
-	Pause(false)
+	#Pause(false)
 	
 	GameController.ui.ActivateLoadingScreen()
 	GameController.ui.SetLoadingScreenPercent(0)
@@ -130,7 +130,7 @@ func ChangeSystem(stargate):
 	yield(player.ship.TakeOff(), "completed")
 	Pause(false)
 
-func Initialize():
+func Initialize():	
 	player = null
 	world = null
 	ui = null

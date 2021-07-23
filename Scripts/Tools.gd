@@ -23,3 +23,8 @@ func CreateTimer(time: float, parent = self) -> Timer:
 	timer.connect("timeout", timer, "queue_free")
 	timer.start()
 	return timer
+
+func Swap(obj1, obj2):
+	var temp = obj1
+	obj1 = obj2
+	obj2 = temp

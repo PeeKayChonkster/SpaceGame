@@ -14,6 +14,7 @@
 [node name="World" type="Node2D"]
 
 [node name="ProceduralSpaceBackground" parent="." instance=ExtResource( 1 )]
+position = Vector2( 10.0793, -5.03967 )
 
 [node name="Ships" type="Node2D" parent="."]
 
@@ -42,6 +43,7 @@ position = Vector2( 1812.01, 143.781 )
 layer = 5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
 [node name="Meteors" type="Node2D" parent="."]
 

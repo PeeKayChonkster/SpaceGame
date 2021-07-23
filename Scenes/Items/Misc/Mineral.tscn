@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Item.gd" type="Script" id=1]
+[ext_resource path="res://src/Textures/Items/Mineral_white.png" type="Texture" id=2]
+[ext_resource path="res://src/Textures/Items/Mineral_white_n.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.2379, 23.6814 )
+
+[node name="Mineral" type="Node2D"]
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 1 )
+itemName = "Mineral"
+inventoryTexture = ExtResource( 2 )
+description = "Mineral."
+type = 5
+stackable = true
+stackSize = 10
+quantity = 10.0
+price = 5
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )

@@ -14,6 +14,7 @@ onready var moveCursor = $MoveCursorBackground/MoveCursor
 onready var startMenu = $StartMenu
 onready var pauseMenu = $PauseMenu
 onready var settingsMenu = $SettingsMenu
+onready var splitItemsUI = $SplitItemsUI
 
 func _ready():
 	ToggleDebugUI(DebugUI)
@@ -81,3 +82,9 @@ func ActivateSettingsMenu():
 
 func DeactivateSettingsMenu():
 	settingsMenu.hide()
+
+func ActivateSplitItemsUI(minValue: int, maxValue: int, price: int):
+	splitItemsUI.Activate(minValue, maxValue, price)
+
+func DeactivateSplitItemsUI():
+	splitItemsUI.Deactivate()

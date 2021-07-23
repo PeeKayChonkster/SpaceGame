@@ -19,12 +19,105 @@ func Activate():
 func Deactivate():
 	hide()
 
-func AddItem(item: InventoryItem) -> bool:
-	for slot in inventorySlots:
-		if(slot.Empty()):
-			slot.Put(item)
+func AddItem(item: InventoryItem, slot = null) -> bool:
+	var itemQuantity = item.quantity
+	
+	if (slot):
+		itemQuantity -= slot.Put(item)
+		if(itemQuantity <= 0):
 			return true
+	
+	for slot in inventorySlots:
+		if(slot.Empty() || (item.stackable && item.itemName == slot.item.itemName && slot.item.quantity < slot.item.stackSize)):
+			itemQuantity -= slot.Put(item)
+			if(itemQuantity <= 0):
+				return true
+	
+	if(item.slot):
+		item.slot.inventory.AddItem(item, item.slot)
 	return false
+
+func BuyItem(item: InventoryItem, slot = null):
+	var itemQuantity = item.quantity
+	var initialQuantity = item.quantity
+	var oldSlot = item.slot
+	var oldPrice = item.price
+	
+	### Check if inventory has enough money, correct input quantity accordingly
+	if(money < item.quantity * item.price):
+		var affordableQuantity = money / item.price
+		if(affordableQuantity == 0):  ### can't buy even 1 piece
+			oldSlot.inventory.AddItem(item, oldSlot)
+			return
+		var item1 = item.Split(affordableQuantity)
+		var temp = item
+		item = item1
+		item1 = temp
+		itemQuantity = item.quantity
+		initialQuantity= item.quantity
+		item1.slot.inventory.AddItem(item1, item1.slot)
+	
+	### Activate splitUI
+	if (item.quantity > 1):
+		GameController.ui.ActivateSplitItemsUI(1, initialQuantity, oldPrice)
+		while(!GameController.ui.splitItemsUI.answerIsReady && !GameController.ui.splitItemsUI.cancel):
+			yield(get_tree(), "idle_frame")
+		
+		### Player clicked "Ok" button
+		if(GameController.ui.splitItemsUI.answerIsReady):
+			var newQuantity = GameController.ui.splitItemsUI.GetValue()
+			if(newQuantity != initialQuantity):  ### skip splitting if player sells all possible quantity
+				if(newQuantity != initialQuantity):
+					var item1 = item.Split(newQuantity)
+					var temp = item
+					item = item1
+					item1 = temp
+					itemQuantity = newQuantity
+					initialQuantity= newQuantity
+					item1.slot.inventory.AddItem(item1, item1.slot)
+		### Player clicked "Cancel" buttom
+		else:
+			oldSlot.inventory.AddItem(item, oldSlot)
+			GameController.ui.DeactivateSplitItemsUI()
+			return
+	GameController.ui.DeactivateSplitItemsUI()
+	
+	### if there is specific slot as a function parameter
+	### try to add item to this slot first
+	if (slot):
+		itemQuantity -= slot.Put(item)
+		if(itemQuantity <= 0):
+			oldSlot.inventory.money += initialQuantity * oldPrice
+			self.money -= initialQuantity * oldPrice
+			if(oldSlot.type == GameController.SLOT_SHOP): oldSlot.inventory.RefreshPrices()
+			else: RefreshPrices()
+			return true
+	
+	### finally add rest of the item to all other slots
+	for slot in inventorySlots:
+		if(slot.Empty() || (item.stackable && item.itemName == slot.item.itemName && slot.item.quantity < slot.item.stackSize)):
+			itemQuantity -= slot.Put(item)
+			if(itemQuantity <= 0):
+				oldSlot.inventory.money += initialQuantity * oldPrice
+				self.money -= initialQuantity * oldPrice
+				if(oldSlot.type == GameController.SLOT_SHOP): oldSlot.inventory.RefreshPrices()
+				else: RefreshPrices()
+				return true
+	
+	### take/give money
+	oldSlot.inventory.money += (initialQuantity - item.quantity) * oldPrice
+	self.money -= (initialQuantity - item.quantity) * oldPrice
+	### if we are here, then there's some item quantity that didn't
+	### fit in the inventory. Put it back where it came from
+	oldSlot.inventory.AddItem(item, oldSlot)
+	
+	if(oldSlot.type == GameController.SLOT_SHOP): oldSlot.inventory.RefreshPrices()
+	else: RefreshPrices()
+	
+	return false
+
+func RefreshPrices():
+	pass
 
 func Full():
 	for s in inventorySlots:

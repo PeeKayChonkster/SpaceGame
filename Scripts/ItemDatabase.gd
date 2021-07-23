@@ -1,6 +1,6 @@
 extends Node
 
-enum ITEM_TYPE { WEAPON, TARGET_SYSTEM, ENGINE, SHIELD_GENERATOR, FUEL }
+enum ITEM_TYPE { WEAPON, TARGET_SYSTEM, ENGINE, SHIELD_GENERATOR, FUEL, MISC }
 
 var items = {}
 var ships = {}
@@ -17,7 +17,8 @@ var typeStr = {
 	ITEM_TYPE.TARGET_SYSTEM : "Target System",
 	ITEM_TYPE.ENGINE: "Engine",
 	ITEM_TYPE.SHIELD_GENERATOR: "Shield Generator",
-	ITEM_TYPE.FUEL: "Fuel"
+	ITEM_TYPE.FUEL: "Fuel",
+	ITEM_TYPE.MISC: "Misc",
 }
 
 func LoadAll():
