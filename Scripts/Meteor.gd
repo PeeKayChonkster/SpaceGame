@@ -17,13 +17,6 @@ var life = 100.0
 func _ready():
 	set_size(size)
 
-func _on_Meteor1_body_entered(body):
-	if(body is RigidBody2D):
-		var resultVelocity = body.linear_velocity - linear_velocity
-		var damage = resultVelocity.length() * GameController.collisionVelocityDamageCoef
-		body.TakeDamage(damage)
-		TakeDamage(damage)
-
 func TakeDamage(damage: float, _who = null):
 	life -= damage
 	if(life <= 0.0):
@@ -43,6 +36,6 @@ func set_size(value):
 	size = value
 	sprite.scale = initialScaleSprite * size
 	collisionPolygon.scale = initialScaleCollisionPolygon * size
-	life = size * 10.0
-	mass = size * 50.0
+	life = pow(size, 2.0) * 30.0
+	mass = size * 4000.0
 #######################

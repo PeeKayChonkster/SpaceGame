@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/ShipClickPanel.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ShipSlot.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Textures/Ships/TestShip.png" type="Texture" id=9]
 [ext_resource path="res://src/Materials/ExaustJiggle.tres" type="Material" id=10]
 [ext_resource path="res://src/Textures/Ships/Ship2_n.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Effects/Trail.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Textures/Ships/Ship2.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
@@ -199,6 +200,12 @@ itemType = 3
 
 [node name="Tween" type="Tween" parent="."]
 pause_mode = 2
+
+[node name="Trail" parent="." instance=ExtResource( 12 )]
+position = Vector2( -193.188, 34.6479 )
+
+[node name="Trail2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 191.088, 36.2334 )
 
 [connection signal="gui_input" from="ShipClickPanel" to="ShipClickPanel" method="_on_ShipClickPanel_gui_input"]
 

@@ -96,7 +96,7 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -90.806, 137.564, -62.7444, 99.6813, -93.6121, 67.4105, -41.6982, -276.344, 28.4557, -277.747, 84.5788, 64.6043, 56.5172, 99.6813, 85.9818, 143.177, 181.391, 127.743, 181.391, 252.617, 76.1603, 270.857, 31.2618, 265.244, -31.8767, 265.244, -87.9998, 272.26, -186.215, 251.214, -184.812, 133.355 )
+polygon = PoolVector2Array( -93.6121, 67.4105, -41.6982, -276.344, 28.4557, -277.747, 84.5788, 64.6043, 181.391, 127.743, 181.391, 252.617, 76.1603, 270.857, 31.2618, 265.244, -31.8767, 265.244, -87.9998, 272.26, -186.215, 251.214, -184.812, 133.355 )
 
 [node name="Exaust" type="Node2D" parent="."]
 position = Vector2( -0.0992126, 71.0252 )
@@ -170,9 +170,13 @@ itemType = 3
 pause_mode = 2
 
 [node name="Trail" parent="." instance=ExtResource( 12 )]
-position = Vector2( 0, 259.862 )
+position = Vector2( -159.099, 217.435 )
+
+[node name="Trail2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 159.099, 213.9 )
 
 [connection signal="gui_input" from="ShipClickPanel" to="ShipClickPanel" method="_on_ShipClickPanel_gui_input"]
 
 [editable path="Slots/ShieldGeneratorSlot/TestShieldGenerator"]
 [editable path="Trail"]
+[editable path="Trail2"]

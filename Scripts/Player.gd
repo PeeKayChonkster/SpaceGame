@@ -63,7 +63,7 @@ func CalculateVelocity(delta):
 		velocity = velocity.clamped(ship.engine.maxSpeed)
 		# friction
 		
-		velocity -= velocity.normalized() * 10.0
+		velocity -= (pow(sin(dir.angle_to(velocity)), 4.0) * velocity * (1.0 - accelerationCoef) + velocity * (1.0 - accelerationCoef)) * 0.02
 		
 #		if(is_equal_approx(accelerationCoef, 0.0)):
 #			velocity += -velocity.normalized() * linearAcceleration * delta
@@ -74,7 +74,7 @@ func CalculateVelocity(delta):
 		
 		#### Extra
 		camera.SetDynamicZoomRatio((velocity.length() + cursorDist / ((get_viewport().size.x + get_viewport().size.y) / 3.0)) / ship.engine.maxSpeed / 2.0)
-		DebugWindow.OutputVec2(velocity, true)
+		#DebugWindow.OutputVec2(velocity, true)
 		####
 		
 	# Slowly stop if no fuel or engine

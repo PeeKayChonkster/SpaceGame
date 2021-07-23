@@ -42,51 +42,51 @@ position = Vector2( 1812.01, 143.781 )
 layer = 5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.211765, 0.211765, 0.211765, 1 )
 
 [node name="Meteors" type="Node2D" parent="."]
 
 [node name="Meteor1" parent="Meteors" instance=ExtResource( 3 )]
-position = Vector2( 3910.21, -182.712 )
+position = Vector2( 2942.59, -112.156 )
+size = 2.0
 
 [node name="Meteor2" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2375.35, -515.331 )
+position = Vector2( 1874.15, -226.126 )
 
 [node name="Meteor7" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2443.23, -540.787 )
+position = Vector2( 1942.03, -251.582 )
 
 [node name="Meteor8" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2434.74, -492.703 )
+position = Vector2( 1933.54, -203.498 )
 
 [node name="Meteor9" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2318.78, -461.591 )
+position = Vector2( 1817.58, -172.386 )
 
 [node name="Meteor10" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2412.11, -441.792 )
+position = Vector2( 1910.91, -152.587 )
 
 [node name="Meteor11" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2301.81, -509.674 )
+position = Vector2( 1800.61, -220.469 )
 
 [node name="Meteor12" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2341.4, -569.071 )
+position = Vector2( 1840.19, -279.866 )
 
 [node name="Meteor13" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2392.31, -588.87 )
+position = Vector2( 1891.11, -299.665 )
 
 [node name="Meteor14" parent="Meteors" instance=ExtResource( 4 )]
-position = Vector2( 2474.34, -453.106 )
+position = Vector2( 1973.13, -163.901 )
 
 [node name="Meteor3" parent="Meteors" instance=ExtResource( 9 )]
-position = Vector2( 3665.47, -512.578 )
+position = Vector2( 2697.85, -442.022 )
 
 [node name="Meteor4" parent="Meteors" instance=ExtResource( 10 )]
-position = Vector2( 3473.25, -266.968 )
+position = Vector2( 2505.63, -196.412 )
 
 [node name="Meteor5" parent="Meteors" instance=ExtResource( 10 )]
-position = Vector2( 3353.12, -189.547 )
+position = Vector2( 2385.5, -118.991 )
 
 [node name="Meteor6" parent="Meteors" instance=ExtResource( 10 )]
-position = Vector2( 3289.04, -368.416 )
+position = Vector2( 2321.42, -297.86 )
 
 [editable path="UI"]
 [editable path="UI/MoveCursorBackground"]

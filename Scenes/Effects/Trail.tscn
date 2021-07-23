@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Scripts/Trail.gd" type="Script" id=1]
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 light_mode = 1
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.2 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.4 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.00843882, 0.50211, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.701961 )
 
@@ -18,9 +18,9 @@ script = ExtResource( 1 )
 length = 30
 
 [node name="Line2D" type="Line2D" parent="."]
-material = SubResource( 3 )
+material = SubResource( 1 )
 z_index = -3
-width = 4.0
-width_curve = SubResource( 1 )
+width = 2.0
+width_curve = SubResource( 2 )
 default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 2 )
+gradient = SubResource( 3 )

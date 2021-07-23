@@ -105,8 +105,10 @@ func CalculateVelocity(delta):
 	velocity += dir * linearAcceleration * accelerationCoef * delta
 	velocity = velocity.clamped(ship.engine.maxSpeed)
 	# friction
-	if(is_equal_approx(accelerationCoef, 0.0)):
-		velocity += -velocity.normalized() * linearAcceleration * delta
+	velocity -= (pow(sin(dir.angle_to(velocity)), 4.0) * velocity + velocity * (1.0 - accelerationCoef)) * 0.02
+	
+#	if(is_equal_approx(accelerationCoef, 0.0)):
+#		velocity += -velocity.normalized() * linearAcceleration * delta
 	
 	### Old friction system. It may be for npc better after all
 	#velocity += -velocity * (ship.engine.breaks / ship.mass) * (1.0 - accelerationCoef) * delta

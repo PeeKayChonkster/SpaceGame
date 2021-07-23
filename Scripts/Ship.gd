@@ -62,9 +62,11 @@ func CheckForCollision(collision):
 			collision.collider.TakeDamage(damage, self)
 		
 		var body = collision.collider
-		var impulse = body.mass * ((mass * pilot.velocity + body.mass * body.linear_velocity) / (mass + body.mass))
+		var v1 = pilot.velocity.project(collision.normal)
+		var v2 = body.linear_velocity.project(collision.normal)
+		var impulse =  (body.mass * mass / (body.mass + mass)) * v1  ###((body.mass * v2 + mass * v1) / (body.mass + mass)) * body.mass
 		collision.collider.apply_impulse(collision.collider.to_local(collision.position), impulse)
-		pilot.velocity = impulse / body.mass
+		pilot.velocity -= impulse / mass
 
 func SetExaust(coef: float):
 	if(engine):

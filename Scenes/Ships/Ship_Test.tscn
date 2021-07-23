@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Textures/Ships/TestShip_n.png" type="Texture" id=1]
 [ext_resource path="res://src/Textures/Ships/TestShip.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/Items/Engines/TestEngine.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Items/Weapons/MachineGun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Items/ShieldGenerators/TestShieldGenerator.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Effects/Trail.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -183,6 +184,12 @@ itemType = 3
 
 [node name="Tween" type="Tween" parent="."]
 pause_mode = 2
+
+[node name="Trail" parent="." instance=ExtResource( 13 )]
+position = Vector2( -207.887, 163.79 )
+
+[node name="Trail2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 207.887, 163.79 )
 
 [connection signal="gui_input" from="ShipClickPanel" to="ShipClickPanel" method="_on_ShipClickPanel_gui_input"]
 
