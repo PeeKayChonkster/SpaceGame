@@ -13,6 +13,7 @@ func _ready():
 
 func _unhandled_input(event):
 	##### MOVING #####
+	##### TouchScreen #####
 	if(OS.has_touchscreen_ui_hint()):
 		if (event is InputEventScreenTouch):
 			if(event.index == 0):    ### one touch
@@ -30,6 +31,7 @@ func _unhandled_input(event):
 					player.ship.Fire(true)
 				else:
 					player.ship.Fire(false)
+	##### Mouse #####
 	else:
 		if (event is InputEventMouseButton):
 			if(event.button_index == 1):

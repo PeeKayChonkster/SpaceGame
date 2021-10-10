@@ -11,6 +11,8 @@ var initialized = false
 var camera
 var fogSetups = {}   ## key = systemID, value = array of fog colors
 
+var parallaxSpeed: float = 1.5;
+
 var fogShader1
 var fogShader2
 var fogShader3
@@ -23,11 +25,11 @@ func Parallax():
 		var cameraPos = camera.global_position
 		cameraPos.y *= -1.0
 		if(fog3.visible):
-			fogShader3.set_shader_param("shift", cameraPos * 0.00005)
+			fogShader3.set_shader_param("shift", cameraPos * 0.00005 * parallaxSpeed)
 		if(fog2.visible):
-			fogShader2.set_shader_param("shift", cameraPos * 0.0001)
+			fogShader2.set_shader_param("shift", cameraPos * 0.0001 * parallaxSpeed)
 		if(fog1.visible):
-			fogShader1.set_shader_param("shift", cameraPos * 0.0002)
+			fogShader1.set_shader_param("shift", cameraPos * 0.0002 * parallaxSpeed)
 		yield(get_tree(), "idle_frame")
 
 func GenerateFogColor(systemID: int):

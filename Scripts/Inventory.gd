@@ -111,9 +111,6 @@ func BuyItem(item: InventoryItem, slot = null):
 	### fit in the inventory. Put it back where it came from
 	oldSlot.inventory.AddItem(item, oldSlot)
 	
-	if(oldSlot.type == GameController.SLOT_SHOP): oldSlot.inventory.RefreshPrices()
-	else: RefreshPrices()
-	
 	return false
 
 func RefreshPrices():

@@ -29,7 +29,7 @@ func _on_Area2D_body_entered(body):
 
 func _on_Area2D_body_exited(body):
 	if ("pilot" in body && body.pilot):
-		body.pilot.DenyInteraction()
+		body.pilot.DenyInteraction(self)
 
 
 class StargateInfo:

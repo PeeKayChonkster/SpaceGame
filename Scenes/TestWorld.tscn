@@ -39,6 +39,8 @@ z_index = -5
 [node name="MachineGun" parent="Clutter" instance=ExtResource( 2 )]
 position = Vector2( 1812.01, 143.781 )
 
+[node name="Light2D" type="Light2D" parent="Clutter"]
+
 [node name="UI" parent="." instance=ExtResource( 6 )]
 layer = 5
 

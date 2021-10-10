@@ -175,7 +175,7 @@ func Explode():
 				s.item.global_position = global_position + Tools.RandomVec(30.0)
 				s.item.Unequip()
 	
-	EffectsManager.Flash()
+	EffectsManager.FlashScreen()
 	EffectsManager.ShakeCamera()
 	var newExplosion = shipExplosionPefab.instance()
 	GameController.world.add_child(newExplosion)

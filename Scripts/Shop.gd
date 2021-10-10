@@ -55,10 +55,15 @@ func RefreshPrices():
 		if(s.item):
 			ChangeItemPrice(s.item, false)
 
-func AddItem(item:InventoryItem, slot = null):
+func AddItem(item: InventoryItem, slot = null):
 	if (!.AddItem(item, slot)):
 		AddRow()
 		AddItem(item, slot)
+
+func BuyItem(item: InventoryItem, slot = null):
+	if (!.BuyItem(item, slot)):
+		AddRow()
+		.BuyItem(item, slot)
 
 func Initialize():
 	while(ItemDatabase.items.empty()): yield(get_tree(), "idle_frame")

@@ -9,7 +9,7 @@ var maxFlashAlpha = 0.8
 func _ready():
 	Initialize()
 
-func Flash(time: float = 0.2, color: Color = Color.white):
+func FlashScreen(time: float = 0.2, color: Color = Color.white):
 	flashPanel.show()
 	flashPanel.self_modulate = color
 	flashPanel.self_modulate.a = 0.0
